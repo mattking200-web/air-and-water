@@ -533,6 +533,9 @@
         .card[data-section="e13"] { border-color: var(--deep-ocean); }
         .card[data-section="e21"] { border-color: var(--air-cyan); }
         .card[data-section="e22"] { border-color: var(--water-blue); }
+        .card[data-section="e23"] { border-color: var(--sun-yellow); }
+        .card[data-section="e24"] { border-color: var(--ice-blue); }
+        .card[data-section="e25"] { border-color: var(--earth-green); }
         
         /* Responsive */
         @media (max-width: 768px) {
@@ -566,15 +569,571 @@
             <button class="nav-btn" onclick="showPage('e13')">E1.3 Water Around the World</button>
             <button class="nav-btn" onclick="showPage('e21')">E2.1 Properties of Air & Water</button>
             <button class="nav-btn" onclick="showPage('e22')">E2.2 Sources of Water</button>
-            <button class="nav-btn" disabled>E2.3 The Water Cycle</button>
-            <button class="nav-btn" disabled>E2.4 States of Water</button>
-            <button class="nav-btn" disabled>E2.5 Why We Need Air & Water</button>
+            <button class="nav-btn" onclick="showPage('e23')">E2.3 The Water Cycle</button>
+            <button class="nav-btn" onclick="showPage('e24')">E2.4 States of Water</button>
+            <button class="nav-btn" onclick="showPage('e25')">E2.5 Why We Need Air & Water</button>
         </div>
     </nav>
 
     <button class="back-button" id="back-btn" onclick="showHome()">⬅ Back Home</button>
 
     <div class="container">
+        <!-- E2.3: The Water Cycle -->
+        <div id="e23" class="page">
+            <div class="card" data-section="e23">
+                <h2>🔄 E2.3: The Water Cycle</h2>
+                
+                <p class="clickable-audio">Water goes on an amazing journey called the water cycle! It travels from the ground to the sky and back again, over and over!</p>
+                
+                <h3>The Four Stages</h3>
+                <p class="clickable-audio">The water cycle has four main stages: evaporation, condensation, precipitation, and collection. Let's learn about each one!</p>
+                
+                <div class="example-grid">
+                    <div class="example-card clickable-audio" style="border-color: var(--sun-yellow);">
+                        <div class="icon">☀️</div>
+                        <h4>1. Evaporation</h4>
+                        <p>Sun heats water, turns it to vapor!</p>
+                    </div>
+                    <div class="example-card clickable-audio" style="border-color: var(--cloud-white);">
+                        <div class="icon">☁️</div>
+                        <h4>2. Condensation</h4>
+                        <p>Water vapor makes clouds!</p>
+                    </div>
+                    <div class="example-card clickable-audio" style="border-color: var(--water-blue);">
+                        <div class="icon">🌧️</div>
+                        <h4>3. Precipitation</h4>
+                        <p>Water falls as rain or snow!</p>
+                    </div>
+                    <div class="example-card clickable-audio" style="border-color: var(--deep-ocean);">
+                        <div class="icon">🌊</div>
+                        <h4>4. Collection</h4>
+                        <p>Water gathers in lakes and rivers!</p>
+                    </div>
+                </div>
+                
+                <h3>How It Works</h3>
+                
+                <p class="clickable-audio"><strong>Evaporation:</strong> The sun warms up water in oceans, lakes, and rivers. The water turns into water vapor (a gas) and floats up into the air. You can't see water vapor!</p>
+                
+                <p class="clickable-audio"><strong>Condensation:</strong> High in the sky, the water vapor gets cold. It turns back into tiny water droplets. These droplets stick together and form clouds!</p>
+                
+                <p class="clickable-audio"><strong>Precipitation:</strong> When the water droplets in clouds get too heavy, they fall back to Earth! This is rain. In winter, the water can freeze and fall as snow or hail!</p>
+                
+                <p class="clickable-audio"><strong>Collection:</strong> The water that falls collects in rivers, lakes, and oceans. Some soaks into the ground. Then the sun heats it up again and the cycle starts over!</p>
+                
+                <h3>The Cycle Never Stops!</h3>
+                <p class="clickable-audio">The water cycle has been happening for millions of years! The water you drink today is the same water that dinosaurs drank! It just keeps moving around and around!</p>
+                
+                <div class="example-grid">
+                    <div class="example-card clickable-audio" style="border-color: var(--sun-yellow);">
+                        <div class="icon">🌅</div>
+                        <h4>Morning</h4>
+                        <p>Sun starts evaporation!</p>
+                    </div>
+                    <div class="example-card clickable-audio" style="border-color: var(--water-blue);">
+                        <div class="icon">⛅</div>
+                        <h4>Afternoon</h4>
+                        <p>Clouds form and grow!</p>
+                    </div>
+                    <div class="example-card clickable-audio" style="border-color: var(--deep-ocean);">
+                        <div class="icon">🌧️</div>
+                        <h4>Evening</h4>
+                        <p>Rain falls down!</p>
+                    </div>
+                    <div class="example-card clickable-audio" style="border-color: var(--earth-green);">
+                        <div class="icon">🌙</div>
+                        <h4>Night</h4>
+                        <p>Water collects and rests!</p>
+                    </div>
+                </div>
+
+                <!-- Quiz -->
+                <div class="quiz-container" id="e23-quiz">
+                    <h3>🎯 Quiz Time!</h3>
+                    
+                    <div class="question" data-question="0">
+                        <div class="question-text">1. What makes water evaporate?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, 0)">The moon</div>
+                            <div class="option" onclick="selectOption(this, 1)">The sun's heat</div>
+                            <div class="option" onclick="selectOption(this, 2)">The wind</div>
+                            <div class="option" onclick="selectOption(this, 3)">The rain</div>
+                        </div>
+                        <div class="feedback" id="e23-q0-feedback"></div>
+                    </div>
+
+                    <div class="question" data-question="1">
+                        <div class="question-text">2. What are clouds made of?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, 0)">Cotton</div>
+                            <div class="option" onclick="selectOption(this, 1)">Tiny water droplets</div>
+                            <div class="option" onclick="selectOption(this, 2)">Smoke</div>
+                            <div class="option" onclick="selectOption(this, 3)">Ice cream</div>
+                        </div>
+                        <div class="feedback" id="e23-q1-feedback"></div>
+                    </div>
+
+                    <div class="question" data-question="2">
+                        <div class="question-text">3. What is precipitation?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, 0)">Water turning to vapor</div>
+                            <div class="option" onclick="selectOption(this, 1)">Water falling as rain or snow</div>
+                            <div class="option" onclick="selectOption(this, 2)">Making clouds</div>
+                            <div class="option" onclick="selectOption(this, 3)">Water collecting</div>
+                        </div>
+                        <div class="feedback" id="e23-q2-feedback"></div>
+                    </div>
+
+                    <div class="question" data-question="3">
+                        <div class="question-text">4. Where does water collect?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, 0)">In clouds</div>
+                            <div class="option" onclick="selectOption(this, 1)">In rivers and lakes</div>
+                            <div class="option" onclick="selectOption(this, 2)">In the sun</div>
+                            <div class="option" onclick="selectOption(this, 3)">In the air</div>
+                        </div>
+                        <div class="feedback" id="e23-q3-feedback"></div>
+                    </div>
+
+                    <div class="question" data-question="4">
+                        <div class="question-text">5. Does the water cycle stop?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, 0)">Yes, at night</div>
+                            <div class="option" onclick="selectOption(this, 1)">No, it keeps going</div>
+                            <div class="option" onclick="selectOption(this, 2)">Only in summer</div>
+                            <div class="option" onclick="selectOption(this, 3)">Only in winter</div>
+                        </div>
+                        <div class="feedback" id="e23-q4-feedback"></div>
+                    </div>
+
+                    <button class="quiz-button" onclick="checkQuiz('e23')">✓ Check Answers</button>
+                    <div class="quiz-score" id="e23-quiz-score"></div>
+                </div>
+
+                <!-- Drag and Drop -->
+                <div class="drag-drop-container">
+                    <h3>🎮 Drag & Drop: Put the Water Cycle in Order!</h3>
+                    <p>Drag the stages in the correct order!</p>
+                    
+                    <div class="drag-items-container" id="e23-drag-items">
+                        <div class="drag-item" draggable="true" data-category="step1">Evaporation</div>
+                        <div class="drag-item" draggable="true" data-category="step2">Condensation</div>
+                        <div class="drag-item" draggable="true" data-category="step3">Precipitation</div>
+                        <div class="drag-item" draggable="true" data-category="step4">Collection</div>
+                        <div class="drag-item" draggable="true" data-category="step1">Sun heats water</div>
+                        <div class="drag-item" draggable="true" data-category="step2">Clouds form</div>
+                        <div class="drag-item" draggable="true" data-category="step3">Rain falls</div>
+                        <div class="drag-item" draggable="true" data-category="step4">Water gathers</div>
+                    </div>
+
+                    <div class="drop-zones">
+                        <div class="drop-zone" data-category="step1">
+                            <h4>☀️ First</h4>
+                        </div>
+                        <div class="drop-zone" data-category="step2">
+                            <h4>☁️ Second</h4>
+                        </div>
+                        <div class="drop-zone" data-category="step3">
+                            <h4>🌧️ Third</h4>
+                        </div>
+                        <div class="drop-zone" data-category="step4">
+                            <h4>🌊 Fourth</h4>
+                        </div>
+                    </div>
+
+                    <button class="quiz-button" onclick="checkDragDrop('e23')">✓ Check</button>
+                    <button class="quiz-button" onclick="resetDragDrop('e23')">↻ Reset</button>
+                    <div class="feedback" id="e23-drag-feedback"></div>
+                </div>
+            </div>
+            <button class="back-button bottom-back-button show" onclick="showHome()">⬅ Back Home</button>
+        </div>
+
+        <!-- E2.4: States of Water -->
+        <div id="e24" class="page">
+            <div class="card" data-section="e24">
+                <h2>🧊 E2.4: States of Water</h2>
+                
+                <p class="clickable-audio">Water is amazing because it can be three different things! It can be solid ice, liquid water, or gas (steam). Temperature makes water change!</p>
+                
+                <h3>The Three States of Water</h3>
+                
+                <div class="example-grid">
+                    <div class="example-card clickable-audio" style="border-color: var(--ice-blue);">
+                        <div class="icon">🧊</div>
+                        <h4>Solid (Ice)</h4>
+                        <p>Hard and frozen!</p>
+                    </div>
+                    <div class="example-card clickable-audio" style="border-color: var(--water-blue);">
+                        <div class="icon">💧</div>
+                        <h4>Liquid (Water)</h4>
+                        <p>Flows and pours!</p>
+                    </div>
+                    <div class="example-card clickable-audio" style="border-color: var(--sun-yellow);">
+                        <div class="icon">💨</div>
+                        <h4>Gas (Steam)</h4>
+                        <p>Floats in the air!</p>
+                    </div>
+                </div>
+                
+                <h3>How Temperature Changes Water</h3>
+                <p class="clickable-audio">Temperature is very important! When water gets cold, it freezes into ice. When ice gets warm, it melts into liquid water. When liquid water gets very hot, it evaporates into steam!</p>
+                
+                <div class="example-grid">
+                    <div class="example-card clickable-audio" style="border-color: var(--ice-blue);">
+                        <div class="icon">❄️</div>
+                        <h4>Freezing</h4>
+                        <p>0°C or 32°F - Water becomes ice!</p>
+                    </div>
+                    <div class="example-card clickable-audio" style="border-color: var(--water-blue);">
+                        <div class="icon">🌡️</div>
+                        <h4>Melting</h4>
+                        <p>Above 0°C - Ice becomes water!</p>
+                    </div>
+                    <div class="example-card clickable-audio" style="border-color: var(--sun-yellow);">
+                        <div class="icon">🔥</div>
+                        <h4>Boiling</h4>
+                        <p>100°C or 212°F - Water becomes steam!</p>
+                    </div>
+                    <div class="example-card clickable-audio" style="border-color: var(--water-blue);">
+                        <div class="icon">💧</div>
+                        <h4>Condensing</h4>
+                        <p>Steam cools - Becomes water!</p>
+                    </div>
+                </div>
+                
+                <h3>Water States in Nature</h3>
+                <p class="clickable-audio">We see all three states of water in the environment! Ice is in glaciers and snowflakes. Liquid water is in rivers and rain. Water vapor is in clouds and steam from hot springs!</p>
+                
+                <div class="example-grid">
+                    <div class="example-card clickable-audio" style="border-color: var(--ice-blue);">
+                        <div class="icon">⛄</div>
+                        <h4>Snow</h4>
+                        <p>Solid water crystals!</p>
+                    </div>
+                    <div class="example-card clickable-audio" style="border-color: var(--water-blue);">
+                        <div class="icon">🌊</div>
+                        <h4>Ocean</h4>
+                        <p>Liquid water!</p>
+                    </div>
+                    <div class="example-card clickable-audio" style="border-color: var(--cloud-white);">
+                        <div class="icon">☁️</div>
+                        <h4>Clouds</h4>
+                        <p>Water vapor droplets!</p>
+                    </div>
+                    <div class="example-card clickable-audio" style="border-color: var(--ice-blue);">
+                        <div class="icon">🏔️</div>
+                        <h4>Glaciers</h4>
+                        <p>Giant ice sheets!</p>
+                    </div>
+                </div>
+
+                <!-- Quiz -->
+                <div class="quiz-container" id="e24-quiz">
+                    <h3>🎯 Quiz Time!</h3>
+                    
+                    <div class="question" data-question="0">
+                        <div class="question-text">1. How many states can water be?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, 0)">One</div>
+                            <div class="option" onclick="selectOption(this, 1)">Three</div>
+                            <div class="option" onclick="selectOption(this, 2)">Five</div>
+                            <div class="option" onclick="selectOption(this, 3)">Ten</div>
+                        </div>
+                        <div class="feedback" id="e24-q0-feedback"></div>
+                    </div>
+
+                    <div class="question" data-question="1">
+                        <div class="question-text">2. What happens when water freezes?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, 0)">Becomes steam</div>
+                            <div class="option" onclick="selectOption(this, 1)">Becomes ice</div>
+                            <div class="option" onclick="selectOption(this, 2)">Stays the same</div>
+                            <div class="option" onclick="selectOption(this, 3)">Disappears</div>
+                        </div>
+                        <div class="feedback" id="e24-q1-feedback"></div>
+                    </div>
+
+                    <div class="question" data-question="2">
+                        <div class="question-text">3. What is steam?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, 0)">Solid water</div>
+                            <div class="option" onclick="selectOption(this, 1)">Water gas (vapor)</div>
+                            <div class="option" onclick="selectOption(this, 2)">Ice</div>
+                            <div class="option" onclick="selectOption(this, 3)">Snow</div>
+                        </div>
+                        <div class="feedback" id="e24-q2-feedback"></div>
+                    </div>
+
+                    <div class="question" data-question="3">
+                        <div class="question-text">4. At what temperature does water freeze?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, 0)">100°C</div>
+                            <div class="option" onclick="selectOption(this, 1)">0°C</div>
+                            <div class="option" onclick="selectOption(this, 2)">50°C</div>
+                            <div class="option" onclick="selectOption(this, 3)">-100°C</div>
+                        </div>
+                        <div class="feedback" id="e24-q3-feedback"></div>
+                    </div>
+
+                    <div class="question" data-question="4">
+                        <div class="question-text">5. What changes water's state?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, 0)">Color</div>
+                            <div class="option" onclick="selectOption(this, 1)">Temperature</div>
+                            <div class="option" onclick="selectOption(this, 2)">Size</div>
+                            <div class="option" onclick="selectOption(this, 3)">Smell</div>
+                        </div>
+                        <div class="feedback" id="e24-q4-feedback"></div>
+                    </div>
+
+                    <button class="quiz-button" onclick="checkQuiz('e24')">✓ Check Answers</button>
+                    <div class="quiz-score" id="e24-quiz-score"></div>
+                </div>
+
+                <!-- Drag and Drop -->
+                <div class="drag-drop-container">
+                    <h3>🎮 Drag & Drop: Match the State!</h3>
+                    <p>Sort by state of water!</p>
+                    
+                    <div class="drag-items-container" id="e24-drag-items">
+                        <div class="drag-item" draggable="true" data-category="solid">Ice cubes</div>
+                        <div class="drag-item" draggable="true" data-category="liquid">Rain</div>
+                        <div class="drag-item" draggable="true" data-category="gas">Steam</div>
+                        <div class="drag-item" draggable="true" data-category="solid">Snow</div>
+                        <div class="drag-item" draggable="true" data-category="liquid">Ocean</div>
+                        <div class="drag-item" draggable="true" data-category="gas">Water vapor</div>
+                        <div class="drag-item" draggable="true" data-category="solid">Glacier</div>
+                        <div class="drag-item" draggable="true" data-category="liquid">River</div>
+                    </div>
+
+                    <div class="drop-zones">
+                        <div class="drop-zone" data-category="solid">
+                            <h4>🧊 Solid</h4>
+                        </div>
+                        <div class="drop-zone" data-category="liquid">
+                            <h4>💧 Liquid</h4>
+                        </div>
+                        <div class="drop-zone" data-category="gas">
+                            <h4>💨 Gas</h4>
+                        </div>
+                    </div>
+
+                    <button class="quiz-button" onclick="checkDragDrop('e24')">✓ Check</button>
+                    <button class="quiz-button" onclick="resetDragDrop('e24')">↻ Reset</button>
+                    <div class="feedback" id="e24-drag-feedback"></div>
+                </div>
+            </div>
+            <button class="back-button bottom-back-button show" onclick="showHome()">⬅ Back Home</button>
+        </div>
+
+        <!-- E2.5: Why We Need Air & Water -->
+        <div id="e25" class="page">
+            <div class="card" data-section="e25">
+                <h2>❤️ E2.5: Why We Need Air & Water</h2>
+                
+                <p class="clickable-audio">Air and water are essential for ALL living things! Without them, nothing could survive on Earth. Let's learn why they're so important!</p>
+                
+                <h3>Why Humans Need Air</h3>
+                <p class="clickable-audio">We breathe air to stay alive! Air has oxygen that our bodies need. We breathe in about 20,000 times every day! Air also helps us talk, smell, and stay warm!</p>
+                
+                <div class="example-grid">
+                    <div class="example-card clickable-audio" style="border-color: var(--air-cyan);">
+                        <div class="icon">🫁</div>
+                        <h4>Breathing</h4>
+                        <p>We need oxygen to live!</p>
+                    </div>
+                    <div class="example-card clickable-audio" style="border-color: var(--air-cyan);">
+                        <div class="icon">🗣️</div>
+                        <h4>Talking</h4>
+                        <p>Air helps us speak!</p>
+                    </div>
+                    <div class="example-card clickable-audio" style="border-color: var(--air-cyan);">
+                        <div class="icon">👃</div>
+                        <h4>Smelling</h4>
+                        <p>Nose needs air to smell!</p>
+                    </div>
+                    <div class="example-card clickable-audio" style="border-color: var(--air-cyan);">
+                        <div class="icon">🌡️</div>
+                        <h4>Temperature</h4>
+                        <p>Air keeps us comfortable!</p>
+                    </div>
+                </div>
+                
+                <h3>Why Humans Need Water</h3>
+                <p class="clickable-audio">Our bodies are made of about 60% water! We need water to drink, stay healthy, clean ourselves, and grow food. We can only live a few days without water!</p>
+                
+                <div class="example-grid">
+                    <div class="example-card clickable-audio" style="border-color: var(--water-blue);">
+                        <div class="icon">🥤</div>
+                        <h4>Drinking</h4>
+                        <p>Stay hydrated and healthy!</p>
+                    </div>
+                    <div class="example-card clickable-audio" style="border-color: var(--water-blue);">
+                        <div class="icon">🚿</div>
+                        <h4>Cleaning</h4>
+                        <p>Wash and stay clean!</p>
+                    </div>
+                    <div class="example-card clickable-audio" style="border-color: var(--water-blue);">
+                        <div class="icon">🥗</div>
+                        <h4>Growing Food</h4>
+                        <p>Plants need water to grow!</p>
+                    </div>
+                    <div class="example-card clickable-audio" style="border-color: var(--water-blue);">
+                        <div class="icon">💪</div>
+                        <h4>Body Functions</h4>
+                        <p>Helps our organs work!</p>
+                    </div>
+                </div>
+                
+                <h3>Why Plants Need Air & Water</h3>
+                <p class="clickable-audio">Plants breathe air too! They take in carbon dioxide and give us oxygen. Plants also need water to grow, make food, and stay healthy. Without plants, we wouldn't have food or clean air!</p>
+                
+                <div class="example-grid">
+                    <div class="example-card clickable-audio" style="border-color: var(--earth-green);">
+                        <div class="icon">🌱</div>
+                        <h4>Growing</h4>
+                        <p>Water helps plants grow!</p>
+                    </div>
+                    <div class="example-card clickable-audio" style="border-color: var(--earth-green);">
+                        <div class="icon">🍃</div>
+                        <h4>Photosynthesis</h4>
+                        <p>Use air and water for food!</p>
+                    </div>
+                    <div class="example-card clickable-audio" style="border-color: var(--earth-green);">
+                        <div class="icon">🌳</div>
+                        <h4>Making Oxygen</h4>
+                        <p>Give us air to breathe!</p>
+                    </div>
+                    <div class="example-card clickable-audio" style="border-color: var(--earth-green);">
+                        <div class="icon">🌸</div>
+                        <h4>Staying Healthy</h4>
+                        <p>Need both for life!</p>
+                    </div>
+                </div>
+                
+                <h3>Why Animals Need Air & Water</h3>
+                <p class="clickable-audio">All animals need air to breathe! Fish breathe oxygen from water using gills. Birds, dogs, cats, and all other animals breathe air. Animals also need water to drink and stay cool!</p>
+                
+                <div class="example-grid">
+                    <div class="example-card clickable-audio" style="border-color: var(--deep-ocean);">
+                        <div class="icon">🐕</div>
+                        <h4>Land Animals</h4>
+                        <p>Breathe air, drink water!</p>
+                    </div>
+                    <div class="example-card clickable-audio" style="border-color: var(--deep-ocean);">
+                        <div class="icon">🐠</div>
+                        <h4>Water Animals</h4>
+                        <p>Get oxygen from water!</p>
+                    </div>
+                    <div class="example-card clickable-audio" style="border-color: var(--deep-ocean);">
+                        <div class="icon">🦅</div>
+                        <h4>Birds</h4>
+                        <p>Fly through air, need water!</p>
+                    </div>
+                    <div class="example-card clickable-audio" style="border-color: var(--deep-ocean);">
+                        <div class="icon">🐸</div>
+                        <h4>Amphibians</h4>
+                        <p>Need both water and air!</p>
+                    </div>
+                </div>
+                
+                <h3>Everything is Connected!</h3>
+                <p class="clickable-audio">All living things depend on air and water! Plants make oxygen for animals. Animals breathe out carbon dioxide for plants. Water moves through all living things. We're all connected in the circle of life!</p>
+
+                <!-- Quiz -->
+                <div class="quiz-container" id="e25-quiz">
+                    <h3>🎯 Quiz Time!</h3>
+                    
+                    <div class="question" data-question="0">
+                        <div class="question-text">1. What do we breathe in from air?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, 0)">Water</div>
+                            <div class="option" onclick="selectOption(this, 1)">Oxygen</div>
+                            <div class="option" onclick="selectOption(this, 2)">Food</div>
+                            <div class="option" onclick="selectOption(this, 3)">Dirt</div>
+                        </div>
+                        <div class="feedback" id="e25-q0-feedback"></div>
+                    </div>
+
+                    <div class="question" data-question="1">
+                        <div class="question-text">2. How much of our body is water?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, 0)">10%</div>
+                            <div class="option" onclick="selectOption(this, 1)">About 60%</div>
+                            <div class="option" onclick="selectOption(this, 2)">5%</div>
+                            <div class="option" onclick="selectOption(this, 3)">90%</div>
+                        </div>
+                        <div class="feedback" id="e25-q1-feedback"></div>
+                    </div>
+
+                    <div class="question" data-question="2">
+                        <div class="question-text">3. What do plants give us?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, 0)">Carbon dioxide</div>
+                            <div class="option" onclick="selectOption(this, 1)">Oxygen</div>
+                            <div class="option" onclick="selectOption(this, 2)">Dirt</div>
+                            <div class="option" onclick="selectOption(this, 3)">Rocks</div>
+                        </div>
+                        <div class="feedback" id="e25-q2-feedback"></div>
+                    </div>
+
+                    <div class="question" data-question="3">
+                        <div class="question-text">4. How do fish breathe?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, 0)">Through lungs</div>
+                            <div class="option" onclick="selectOption(this, 1)">Through gills</div>
+                            <div class="option" onclick="selectOption(this, 2)">Through skin only</div>
+                            <div class="option" onclick="selectOption(this, 3)">They don't breathe</div>
+                        </div>
+                        <div class="feedback" id="e25-q3-feedback"></div>
+                    </div>
+
+                    <div class="question" data-question="4">
+                        <div class="question-text">5. Can we live without water?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, 0)">Yes, forever</div>
+                            <div class="option" onclick="selectOption(this, 1)">No, only few days</div>
+                            <div class="option" onclick="selectOption(this, 2)">Yes, for months</div>
+                            <div class="option" onclick="selectOption(this, 3)">We don't need water</div>
+                        </div>
+                        <div class="feedback" id="e25-q4-feedback"></div>
+                    </div>
+
+                    <button class="quiz-button" onclick="checkQuiz('e25')">✓ Check Answers</button>
+                    <div class="quiz-score" id="e25-quiz-score"></div>
+                </div>
+
+                <!-- Drag and Drop -->
+                <div class="drag-drop-container">
+                    <h3>🎮 Drag & Drop: Who Needs Air & Water?</h3>
+                    <p>All living things need both!</p>
+                    
+                    <div class="drag-items-container" id="e25-drag-items">
+                        <div class="drag-item" draggable="true" data-category="both">Humans</div>
+                        <div class="drag-item" draggable="true" data-category="both">Plants</div>
+                        <div class="drag-item" draggable="true" data-category="both">Animals</div>
+                        <div class="drag-item" draggable="true" data-category="both">Fish</div>
+                        <div class="drag-item" draggable="true" data-category="both">Birds</div>
+                        <div class="drag-item" draggable="true" data-category="both">Trees</div>
+                        <div class="drag-item" draggable="true" data-category="both">Insects</div>
+                        <div class="drag-item" draggable="true" data-category="both">Flowers</div>
+                    </div>
+
+                    <div class="drop-zones">
+                        <div class="drop-zone" data-category="both">
+                            <h4>💧💨 Need Air & Water</h4>
+                        </div>
+                    </div>
+
+                    <button class="quiz-button" onclick="checkDragDrop('e25')">✓ Check</button>
+                    <button class="quiz-button" onclick="resetDragDrop('e25')">↻ Reset</button>
+                    <div class="feedback" id="e25-drag-feedback"></div>
+                </div>
+            </div>
+            <button class="back-button bottom-back-button show" onclick="showHome()">⬅ Back Home</button>
+        </div>
+
         <!-- E2.1: Properties of Air & Water -->
         <div id="e21" class="page">
             <div class="card" data-section="e21">
@@ -1590,6 +2149,27 @@
                 { correct: 1 }, // pipes
                 { correct: 1 }, // human-made lake
                 { correct: 1 }  // wells and springs
+            ],
+            e23: [
+                { correct: 1 }, // sun's heat
+                { correct: 1 }, // tiny water droplets
+                { correct: 1 }, // water falling as rain or snow
+                { correct: 1 }, // in rivers and lakes
+                { correct: 1 }  // no, it keeps going
+            ],
+            e24: [
+                { correct: 1 }, // three
+                { correct: 1 }, // becomes ice
+                { correct: 1 }, // water gas (vapor)
+                { correct: 1 }, // 0°C
+                { correct: 1 }  // temperature
+            ],
+            e25: [
+                { correct: 1 }, // oxygen
+                { correct: 1 }, // about 60%
+                { correct: 1 }, // oxygen
+                { correct: 1 }, // through gills
+                { correct: 1 }  // no, only few days
             ]
         };
 
