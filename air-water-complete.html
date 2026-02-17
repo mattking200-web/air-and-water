@@ -1,0 +1,1860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Air & Water! - Grade 2 Science</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Londrina+Solid:wght@400;900&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --water-blue: #0077BE;
+            --sky-blue: #4DA8DA;
+            --cloud-white: #E8F4F8;
+            --grass-green: #06A77D;
+            --sun-yellow: #F7B801;
+            --coral-orange: #FF6B35;
+            --purple-wave: #9B59B6;
+            --dark-text: #2C3E50;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #E8F4F8 0%, #B8E6F5 100%);
+            color: var(--dark-text);
+            overflow-x: hidden;
+        }
+        
+        /* Floating background elements */
+        .bg-floaters {
+            position: fixed; width: 100%; height: 100%; overflow: hidden; z-index: -1;
+        }
+        .floater {
+            position: absolute;
+            font-size: 3rem;
+            opacity: 0.15;
+            animation: float-around 20s ease-in-out infinite;
+        }
+        .floater:nth-child(1) { top: 10%; left: 5%; animation-duration: 15s; }
+        .floater:nth-child(2) { top: 60%; left: 80%; animation-duration: 18s; animation-delay: 2s; }
+        .floater:nth-child(3) { top: 30%; left: 15%; animation-duration: 22s; animation-delay: 4s; }
+        .floater:nth-child(4) { top: 70%; right: 10%; animation-duration: 19s; animation-delay: 1s; }
+        @keyframes float-around {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(30px, -30px) rotate(90deg); }
+            50% { transform: translate(-20px, 20px) rotate(180deg); }
+            75% { transform: translate(40px, 30px) rotate(270deg); }
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--water-blue) 0%, var(--sky-blue) 50%, var(--grass-green) 100%);
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 12px 50px rgba(0,0,0,0.25);
+            overflow: hidden;
+        }
+        header::before {
+            content: '💧';
+            position: absolute;
+            font-size: 12rem;
+            opacity: 0.1;
+            top: -30px;
+            left: 3%;
+            animation: drip 3s ease-in-out infinite;
+        }
+        header::after {
+            content: '☁️';
+            position: absolute;
+            font-size: 12rem;
+            opacity: 0.1;
+            top: -30px;
+            right: 3%;
+            animation: float-cloud 4s ease-in-out infinite;
+        }
+        @keyframes drip {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(20px); }
+        }
+        @keyframes float-cloud {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(25px); }
+        }
+        
+        h1 {
+            font-family: 'Bungee', cursive;
+            font-size: 4.5rem;
+            color: white;
+            text-shadow: 5px 5px 0 var(--dark-text), 10px 10px 0 rgba(0,0,0,0.3);
+            margin-bottom: 1rem;
+            animation: wave 3s ease-in-out infinite;
+            letter-spacing: 3px;
+        }
+        @keyframes wave {
+            0%, 100% { transform: rotate(-0.5deg); }
+            50% { transform: rotate(0.5deg); }
+        }
+        
+        .subtitle {
+            font-family: 'Londrina Solid', cursive;
+            font-size: 2rem;
+            color: white;
+            text-shadow: 3px 3px 0 rgba(0,0,0,0.3);
+            font-weight: 400;
+        }
+        
+        /* Unit Navigation */
+        .unit-nav {
+            background: white;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 1200px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        .unit-nav h2 {
+            font-family: 'Bungee', cursive;
+            text-align: center;
+            color: var(--water-blue);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        .unit-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        .unit-button {
+            background: linear-gradient(135deg, var(--sky-blue) 0%, var(--purple-wave) 100%);
+            color: white;
+            border: none;
+            padding: 1.5rem;
+            border-radius: 18px;
+            font-family: 'Londrina Solid', cursive;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+            font-weight: 900;
+        }
+        .unit-button:hover {
+            transform: translateY(-8px) rotate(-2deg);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+        }
+        .unit-button.active {
+            background: linear-gradient(135deg, var(--coral-orange) 0%, var(--sun-yellow) 100%);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        .page {
+            display: none;
+            animation: fadeInUp 0.7s;
+        }
+        .page.active { display: block; }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .card {
+            background: white;
+            border-radius: 35px;
+            padding: 3.5rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 18px 50px rgba(0,0,0,0.18);
+            border: 7px solid;
+            position: relative;
+            overflow: hidden;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 80px;
+            height: 80px;
+            background: var(--sun-yellow);
+            border-radius: 50%;
+            opacity: 0.15;
+        }
+        
+        .card h2 {
+            font-family: 'Bungee', cursive;
+            font-size: 3.2rem;
+            margin-bottom: 1.8rem;
+            color: var(--water-blue);
+            text-shadow: 4px 4px 0 var(--sky-blue);
+            letter-spacing: 2px;
+        }
+        .card h3 {
+            font-family: 'Londrina Solid', cursive;
+            font-size: 2.5rem;
+            margin: 2.5rem 0 1.8rem;
+            color: var(--purple-wave);
+            font-weight: 900;
+        }
+        .card p, .card li {
+            font-size: 1.35rem;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+        }
+        .card ul {
+            margin-left: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .card li {
+            margin-bottom: 1rem;
+        }
+        
+        /* Clickable audio effect */
+        .clickable-audio {
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+        .clickable-audio:hover {
+            color: var(--coral-orange);
+            transform: scale(1.02);
+        }
+        .clickable-audio.speaking {
+            color: var(--grass-green);
+            animation: pulse 0.6s ease-in-out;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        /* Card color variations */
+        .card:nth-child(1) { border-color: var(--water-blue); }
+        .card:nth-child(2) { border-color: var(--grass-green); }
+        .card:nth-child(3) { border-color: var(--coral-orange); }
+        .card:nth-child(4) { border-color: var(--purple-wave); }
+        .card:nth-child(5) { border-color: var(--sun-yellow); }
+        
+        /* Example boxes */
+        .example-box {
+            background: linear-gradient(135deg, var(--cloud-white) 0%, #D4F1F9 100%);
+            border-left: 8px solid var(--water-blue);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        .example-box h4 {
+            font-family: 'Londrina Solid', cursive;
+            font-size: 2rem;
+            color: var(--water-blue);
+            margin-bottom: 1rem;
+            font-weight: 900;
+        }
+        
+        /* Quiz Styles */
+        .quiz-container {
+            background: linear-gradient(135deg, #FFF9E6 0%, #FFE4B5 100%);
+            border-radius: 30px;
+            padding: 3rem;
+            margin-top: 3rem;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            border: 6px solid var(--sun-yellow);
+        }
+        .quiz-container h3 {
+            font-family: 'Bungee', cursive;
+            font-size: 2.8rem;
+            color: var(--coral-orange);
+            text-align: center;
+            margin-bottom: 2.5rem;
+            text-shadow: 3px 3px 0 var(--sun-yellow);
+        }
+        .question {
+            background: white;
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            border-radius: 25px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            border: 4px solid var(--sky-blue);
+        }
+        .question-text {
+            font-family: 'Londrina Solid', cursive;
+            font-size: 2rem;
+            color: var(--dark-text);
+            margin-bottom: 1.8rem;
+            font-weight: 900;
+        }
+        .options {
+            display: grid;
+            gap: 1.2rem;
+        }
+        .option {
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 100%);
+            padding: 1.8rem;
+            border-radius: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 4px solid transparent;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        .option:hover {
+            transform: translateX(10px);
+            border-color: var(--sky-blue);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+        .option.selected {
+            background: linear-gradient(135deg, var(--sky-blue) 0%, var(--water-blue) 100%);
+            color: white;
+            border-color: var(--water-blue);
+            transform: scale(1.05);
+        }
+        .option.correct {
+            background: linear-gradient(135deg, var(--grass-green) 0%, #059669 100%);
+            color: white;
+            border-color: var(--grass-green);
+        }
+        .option.incorrect {
+            background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
+            color: white;
+            border-color: #DC2626;
+        }
+        
+        .quiz-button {
+            background: linear-gradient(135deg, var(--coral-orange) 0%, #F97316 100%);
+            color: white;
+            border: none;
+            padding: 2rem 4rem;
+            border-radius: 25px;
+            font-family: 'Londrina Solid', cursive;
+            font-size: 2rem;
+            cursor: pointer;
+            display: block;
+            margin: 3rem auto;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            font-weight: 900;
+        }
+        .quiz-button:hover {
+            transform: translateY(-5px) rotate(-2deg);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+        
+        .quiz-score {
+            font-family: 'Bungee', cursive;
+            font-size: 2.5rem;
+            text-align: center;
+            padding: 2.5rem;
+            border-radius: 25px;
+            margin-top: 2rem;
+            display: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .quiz-score.show { display: block; }
+        
+        /* Drag and Drop Styles */
+        .drag-drop-container {
+            background: linear-gradient(135deg, #F0FDF4 0%, #DCFCE7 100%);
+            border-radius: 30px;
+            padding: 3rem;
+            margin-top: 3rem;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            border: 6px solid var(--grass-green);
+        }
+        .drag-drop-container h3 {
+            font-family: 'Bungee', cursive;
+            font-size: 2.8rem;
+            color: var(--water-blue);
+            text-align: center;
+            margin-bottom: 1.5rem;
+            text-shadow: 3px 3px 0 var(--sky-blue);
+        }
+        .drag-drop-container > p {
+            font-family: 'Londrina Solid', cursive;
+            font-size: 1.8rem;
+            text-align: center;
+            color: var(--dark-text);
+            margin-bottom: 2.5rem;
+            font-weight: 900;
+        }
+        
+        .drag-items-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 20px;
+            min-height: 120px;
+        }
+        .drag-item {
+            background: linear-gradient(135deg, #FFFFFF 0%, #F0F9FF 100%);
+            padding: 1.5rem 2.5rem;
+            border-radius: 20px;
+            cursor: move;
+            font-size: 1.5rem;
+            font-weight: 700;
+            border: 4px solid var(--sky-blue);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+            transition: all 0.3s;
+        }
+        .drag-item:hover {
+            transform: scale(1.08) rotate(-3deg);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+        }
+        .drag-item.dragging {
+            opacity: 0.5;
+            transform: rotate(5deg);
+        }
+        
+        .drop-zones {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .drop-zone {
+            background: white;
+            border: 5px dashed var(--sky-blue);
+            border-radius: 25px;
+            padding: 2rem;
+            min-height: 200px;
+            transition: all 0.3s;
+        }
+        .drop-zone h4 {
+            font-family: 'Londrina Solid', cursive;
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--water-blue);
+            font-weight: 900;
+        }
+        .drop-zone.drag-over {
+            background: var(--cloud-white);
+            border-color: var(--coral-orange);
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .drag-check-button {
+            background: linear-gradient(135deg, var(--grass-green) 0%, #059669 100%);
+            color: white;
+            border: none;
+            padding: 2rem 4rem;
+            border-radius: 25px;
+            font-family: 'Londrina Solid', cursive;
+            font-size: 2rem;
+            cursor: pointer;
+            display: block;
+            margin: 2rem auto;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            font-weight: 900;
+        }
+        .drag-check-button:hover {
+            transform: translateY(-5px) rotate(2deg);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+        
+        .drag-feedback {
+            font-family: 'Bungee', cursive;
+            font-size: 2.5rem;
+            text-align: center;
+            padding: 2.5rem;
+            border-radius: 25px;
+            margin-top: 2rem;
+            display: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .drag-feedback.show { display: block; }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 3rem; }
+            .subtitle { font-size: 1.5rem; }
+            .card h2 { font-size: 2.5rem; }
+            .card h3 { font-size: 2rem; }
+            .card p, .card li { font-size: 1.1rem; }
+            .drag-item { font-size: 1.2rem; padding: 1rem 1.5rem; }
+            .drop-zones { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background floaters -->
+    <div class="bg-floaters">
+        <div class="floater">💧</div>
+        <div class="floater">☁️</div>
+        <div class="floater">🌊</div>
+        <div class="floater">💨</div>
+    </div>
+
+    <header>
+        <h1 class="clickable-audio">AIR & WATER!</h1>
+        <div class="subtitle clickable-audio">Learn About Our Environment 🌍</div>
+    </header>
+
+    <!-- Unit Navigation -->
+    <div class="unit-nav">
+        <h2 class="clickable-audio">Choose Your Learning Unit!</h2>
+        <div class="unit-buttons">
+            <button class="unit-button active" onclick="showPage('unit-e11')">E1.1: Protecting Air & Water</button>
+            <button class="unit-button" onclick="showPage('unit-e12')">E1.2: Using Water Wisely</button>
+            <button class="unit-button" onclick="showPage('unit-e13')">E1.3: Water Around the World</button>
+            <button class="unit-button" onclick="showPage('unit-e21')">E2.1: Properties of Air & Water</button>
+            <button class="unit-button" onclick="showPage('unit-e22')">E2.2: Where Water Comes From</button>
+            <button class="unit-button" onclick="showPage('unit-e23')">E2.3: The Water Cycle</button>
+            <button class="unit-button" onclick="showPage('unit-e24')">E2.4: States of Water</button>
+            <button class="unit-button" onclick="showPage('unit-e25')">E2.5: Why We Need Air & Water</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Unit E1.1 -->
+        <div id="unit-e11" class="page active">
+            <div class="card">
+                <h2 class="clickable-audio">💧 E1.1: Protecting Our Air and Water</h2>
+                <p class="clickable-audio">Air and water are super important! All living things need clean air to breathe and clean water to drink. But sometimes what people do can make air and water dirty. Let's learn how to protect them!</p>
+                
+                <h3 class="clickable-audio">🏭 How People Affect Air and Water</h3>
+                <p class="clickable-audio">People do many things every day. Some things we do can hurt the air and water. Here are some examples:</p>
+                
+                <div class="example-box">
+                    <h4 class="clickable-audio">Things That Hurt Our Air:</h4>
+                    <ul>
+                        <li class="clickable-audio">🚗 <strong>Cars and Trucks:</strong> When cars drive, smoke comes out. This makes the air dirty and hard to breathe.</li>
+                        <li class="clickable-audio">🏭 <strong>Factories:</strong> Some factories blow smoke into the air. This smoke can make people cough and hurt animals.</li>
+                        <li class="clickable-audio">🔥 <strong>Burning Things:</strong> When we burn garbage or leaves, it puts bad smoke in the air.</li>
+                    </ul>
+                </div>
+                
+                <div class="example-box">
+                    <h4 class="clickable-audio">Things That Hurt Our Water:</h4>
+                    <ul>
+                        <li class="clickable-audio">🧴 <strong>Chemicals and Soap:</strong> When chemicals or soap go down the drain, they can end up in rivers and lakes. This makes water unsafe for fish.</li>
+                        <li class="clickable-audio">🗑️ <strong>Garbage in Water:</strong> When people throw garbage in rivers, lakes, or oceans, it hurts animals who live there.</li>
+                        <li class="clickable-audio">🚜 <strong>Farm Runoff:</strong> Sometimes chemicals from farms wash into streams when it rains. This can make the water dirty.</li>
+                    </ul>
+                </div>
+                
+                <h3 class="clickable-audio">🌟 Indigenous Knowledge About Air and Water</h3>
+                <p class="clickable-audio">First Nations, Métis, and Inuit peoples have been taking care of the land and water for thousands of years. They teach us important lessons:</p>
+                
+                <div class="example-box">
+                    <h4 class="clickable-audio">Indigenous Teachings:</h4>
+                    <ul>
+                        <li class="clickable-audio">💙 <strong>Water is Sacred:</strong> Many Indigenous communities believe water is a gift that must be protected.</li>
+                        <li class="clickable-audio">🌬️ <strong>Clean Air is a Right:</strong> Indigenous peoples teach that all living things have a right to clean air.</li>
+                        <li class="clickable-audio">🔄 <strong>Take Only What You Need:</strong> Indigenous knowledge teaches us to use only what we need from nature.</li>
+                        <li class="clickable-audio">👨‍👩‍👧‍👦 <strong>Seven Generations:</strong> Some Indigenous communities think about how their actions will affect the future!</li>
+                    </ul>
+                </div>
+                
+                <h3 class="clickable-audio">✅ How We Can Help!</h3>
+                <p class="clickable-audio">Everyone can do something to protect air and water!</p>
+                
+                <div class="example-box">
+                    <h4 class="clickable-audio">Actions You Can Take:</h4>
+                    <ul>
+                        <li class="clickable-audio">🚶 <strong>Walk or Bike:</strong> Walk or bike to nearby places instead of driving.</li>
+                        <li class="clickable-audio">🗑️ <strong>Pick Up Litter:</strong> Pick up garbage to keep it from washing into rivers!</li>
+                        <li class="clickable-audio">🌳 <strong>Plant Trees:</strong> Trees clean the air! You can help plant trees.</li>
+                        <li class="clickable-audio">💧 <strong>Don't Waste Water:</strong> Turn off the tap when brushing your teeth.</li>
+                        <li class="clickable-audio">♻️ <strong>Reduce, Reuse, Recycle:</strong> Use things more than once and recycle!</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Drag and Drop -->
+            <div class="card">
+                <div class="drag-drop-container">
+                    <h3 class="clickable-audio">🎮 Sort: Good or Bad for Air & Water?</h3>
+                    <p class="clickable-audio">Drag each activity to the correct box!</p>
+                    
+                    <div class="drag-items-container" id="drag-items-unit-e11">
+                        <div class="drag-item" draggable="true" data-category="good">🚶 Walking to School</div>
+                        <div class="drag-item" draggable="true" data-category="bad">🗑️ Throwing Garbage in River</div>
+                        <div class="drag-item" draggable="true" data-category="good">🌳 Planting Trees</div>
+                        <div class="drag-item" draggable="true" data-category="bad">🏭 Factory Smoke</div>
+                        <div class="drag-item" draggable="true" data-category="good">♻️ Recycling Plastic</div>
+                        <div class="drag-item" draggable="true" data-category="bad">🧴 Dumping Chemicals</div>
+                    </div>
+                    
+                    <div class="drop-zones" id="drop-zones-unit-e11">
+                        <div class="drop-zone" data-zone="good"><h4>✅ Good for Air & Water</h4></div>
+                        <div class="drop-zone" data-zone="bad"><h4>❌ Bad for Air & Water</h4></div>
+                    </div>
+
+                    <button class="drag-check-button" onclick="checkDragDrop('unit-e11')">✓ Check My Answers!</button>
+                    <div class="drag-feedback" id="drag-feedback-unit-e11"></div>
+                </div>
+
+                <!-- Quiz Section -->
+                <div class="quiz-container">
+                    <h3 class="clickable-audio">🧠 Test Your Knowledge!</h3>
+                    
+                    <div class="question" data-answer="1">
+                        <div class="question-text clickable-audio">1. What happens when cars drive around a lot?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectQuizOption(this, 0, 'unit-e11')">The air gets cleaner</div>
+                            <div class="option" onclick="selectQuizOption(this, 1, 'unit-e11')">Smoke makes the air dirty</div>
+                            <div class="option" onclick="selectQuizOption(this, 2, 'unit-e11')">Nothing happens</div>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="2">
+                        <div class="question-text clickable-audio">2. What do many Indigenous peoples call water?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectQuizOption(this, 0, 'unit-e11')">The blue liquid</div>
+                            <div class="option" onclick="selectQuizOption(this, 1, 'unit-e11')">The wet stuff</div>
+                            <div class="option" onclick="selectQuizOption(this, 2, 'unit-e11')">A sacred gift</div>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="0">
+                        <div class="question-text clickable-audio">3. What is one way you can help keep the air clean?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectQuizOption(this, 0, 'unit-e11')">Walk or bike to nearby places</div>
+                            <div class="option" onclick="selectQuizOption(this, 1, 'unit-e11')">Drive everywhere in a car</div>
+                            <div class="option" onclick="selectQuizOption(this, 2, 'unit-e11')">Burn garbage</div>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="1">
+                        <div class="question-text clickable-audio">4. Why is plastic garbage in water dangerous?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectQuizOption(this, 0, 'unit-e11')">It makes the water look pretty</div>
+                            <div class="option" onclick="selectQuizOption(this, 1, 'unit-e11')">It hurts animals who live in the water</div>
+                            <div class="option" onclick="selectQuizOption(this, 2, 'unit-e11')">It cleans the water</div>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="2">
+                        <div class="question-text clickable-audio">5. What do trees do for our air?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectQuizOption(this, 0, 'unit-e11')">Make the air dirty</div>
+                            <div class="option" onclick="selectQuizOption(this, 1, 'unit-e11')">Nothing at all</div>
+                            <div class="option" onclick="selectQuizOption(this, 2, 'unit-e11')">Clean the air</div>
+                        </div>
+                    </div>
+
+                    <button class="quiz-button" onclick="checkQuiz('unit-e11')">✓ Check My Answers!</button>
+                    <div class="quiz-score" id="quiz-score-unit-e11"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Unit E1.2 -->
+        <div id="unit-e12" class="page">
+            <div class="card">
+                <h2 class="clickable-audio">🚰 E1.2: Using Water Wisely</h2>
+                <p class="clickable-audio">Did you know that we use water for so many things every day? Let's learn how you and your family use water, and how to save it!</p>
+                
+                <h3 class="clickable-audio">💧 How We Use Water at Home</h3>
+                <p class="clickable-audio">We use water in many ways throughout the day:</p>
+                
+                <div class="example-box">
+                    <h4 class="clickable-audio">Water Uses in Your Home:</h4>
+                    <ul>
+                        <li class="clickable-audio">🚿 <strong>Bathroom:</strong> Brushing teeth, taking showers and baths, flushing the toilet.</li>
+                        <li class="clickable-audio">🍽️ <strong>Kitchen:</strong> Washing dishes, cooking food, getting drinking water.</li>
+                        <li class="clickable-audio">👕 <strong>Laundry:</strong> Washing clothes in the washing machine.</li>
+                        <li class="clickable-audio">🌻 <strong>Outside:</strong> Watering plants and gardens, washing the car.</li>
+                    </ul>
+                </div>
+                
+                <h3 class="clickable-audio">😮 Wow! That's A Lot of Water!</h3>
+                <p class="clickable-audio">Here's how much water some activities use:</p>
+                
+                <div class="example-box">
+                    <h4 class="clickable-audio">Water Facts:</h4>
+                    <ul>
+                        <li class="clickable-audio">🛁 <strong>A bath uses about 150 liters</strong> of water - that's like 150 big milk jugs!</li>
+                        <li class="clickable-audio">🚿 <strong>A 5-minute shower uses about 50 liters</strong> - much less than a bath!</li>
+                        <li class="clickable-audio">🪥 <strong>Leaving the tap on while brushing teeth</strong> can waste 6 liters - enough to fill a big bucket!</li>
+                        <li class="clickable-audio">🚽 <strong>Each toilet flush uses about 6-13 liters</strong> of water.</li>
+                    </ul>
+                </div>
+                
+                <h3 class="clickable-audio">✨ Smart Ways to Save Water!</h3>
+                <p class="clickable-audio">You can be a water-saving superhero! Here's how:</p>
+                
+                <div class="example-box">
+                    <h4 class="clickable-audio">Your Water-Saving Action Plan:</h4>
+                    <ul>
+                        <li class="clickable-audio">🪥 <strong>Turn Off the Tap:</strong> When you brush your teeth, turn the water off! Only turn it on to rinse.</li>
+                        <li class="clickable-audio">⏱️ <strong>Take Shorter Showers:</strong> Try to shower for just 5 minutes. You can even sing a short song!</li>
+                        <li class="clickable-audio">🚿 <strong>Choose Showers Over Baths:</strong> Showers use less water than filling a bathtub.</li>
+                        <li class="clickable-audio">💧 <strong>Fix Drips:</strong> Ask an adult to fix leaky taps. Even small drips waste lots of water!</li>
+                        <li class="clickable-audio">🍽️ <strong>Fill the Sink:</strong> When washing dishes by hand, fill the sink instead of letting water run.</li>
+                        <li class="clickable-audio">🌧️ <strong>Collect Rainwater:</strong> Use rain barrels to collect water for watering plants!</li>
+                        <li class="clickable-audio">👕 <strong>Full Loads Only:</strong> Only run the washing machine when it's full of clothes.</li>
+                        <li class="clickable-audio">🥤 <strong>Keep a Water Bottle:</strong> Keep drinking water in the fridge so you don't run the tap waiting for cold water.</li>
+                    </ul>
+                </div>
+                
+                <h3 class="clickable-audio">📊 Make Your Family Water Plan!</h3>
+                <p class="clickable-audio">Work with your family to create a water-saving plan:</p>
+                
+                <ul>
+                    <li class="clickable-audio"><strong>Water Audit:</strong> Check all the taps in your home. Do any drip? Tell an adult!</li>
+                    <li class="clickable-audio"><strong>Make a Chart:</strong> Track how much water your family saves each week!</li>
+                    <li class="clickable-audio"><strong>Set Goals:</strong> Try to take 1-minute shorter showers this week!</li>
+                    <li class="clickable-audio"><strong>Remind Each Other:</strong> Make signs to remind family members to turn off taps!</li>
+                </ul>
+                
+                <p class="clickable-audio">Remember: Every drop counts! When we all save a little water, it adds up to a LOT! 💧</p>
+            </div>
+
+            <!-- Drag and Drop -->
+            <div class="card">
+                <div class="drag-drop-container">
+                    <h3 class="clickable-audio">🎮 Sort: Saves Water or Wastes Water?</h3>
+                    <p class="clickable-audio">Drag each action to the correct box!</p>
+                    
+                    <div class="drag-items-container" id="drag-items-unit-e12">
+                        <div class="drag-item" draggable="true" data-category="saves">💧 Turning off tap when brushing</div>
+                        <div class="drag-item" draggable="true" data-category="wastes">🚿 20-minute showers</div>
+                        <div class="drag-item" draggable="true" data-category="saves">🌧️ Using rainwater for plants</div>
+                        <div class="drag-item" draggable="true" data-category="wastes">💦 Letting tap drip all day</div>
+                        <div class="drag-item" draggable="true" data-category="saves">⏱️ 5-minute showers</div>
+                        <div class="drag-item" draggable="true" data-category="wastes">🚰 Leaving tap running</div>
+                    </div>
+                    
+                    <div class="drop-zones" id="drop-zones-unit-e12">
+                        <div class="drop-zone" data-zone="saves"><h4>✅ Saves Water</h4></div>
+                        <div class="drop-zone" data-zone="wastes"><h4>❌ Wastes Water</h4></div>
+                    </div>
+
+                    <button class="drag-check-button" onclick="checkDragDrop('unit-e12')">✓ Check My Answers!</button>
+                    <div class="drag-feedback" id="drag-feedback-unit-e12"></div>
+                </div>
+
+                <!-- Quiz Section -->
+                <div class="quiz-container">
+                    <h3 class="clickable-audio">🧠 Test Your Knowledge!</h3>
+                    
+                    <div class="question" data-answer="1">
+                        <div class="question-text clickable-audio">1. Which uses LESS water?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectQuizOption(this, 0, 'unit-e12')">Taking a bath</div>
+                            <div class="option" onclick="selectQuizOption(this, 1, 'unit-e12')">Taking a 5-minute shower</div>
+                            <div class="option" onclick="selectQuizOption(this, 2, 'unit-e12')">They use the same amount</div>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="0">
+                        <div class="question-text clickable-audio">2. What should you do when brushing your teeth?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectQuizOption(this, 0, 'unit-e12')">Turn the tap off while brushing</div>
+                            <div class="option" onclick="selectQuizOption(this, 1, 'unit-e12')">Let the water run the whole time</div>
+                            <div class="option" onclick="selectQuizOption(this, 2, 'unit-e12')">Use as much water as possible</div>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="2">
+                        <div class="question-text clickable-audio">3. Why should you fix a dripping tap?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectQuizOption(this, 0, 'unit-e12')">It makes a nice sound</div>
+                            <div class="option" onclick="selectQuizOption(this, 1, 'unit-e12')">It doesn't matter</div>
+                            <div class="option" onclick="selectQuizOption(this, 2, 'unit-e12')">Even small drips waste lots of water</div>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="1">
+                        <div class="question-text clickable-audio">4. What's a good way to water plants?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectQuizOption(this, 0, 'unit-e12')">Use fresh tap water every day</div>
+                            <div class="option" onclick="selectQuizOption(this, 1, 'unit-e12')">Collect rainwater in a barrel</div>
+                            <div class="option" onclick="selectQuizOption(this, 2, 'unit-e12')">Don't water plants at all</div>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="0">
+                        <div class="question-text clickable-audio">5. When should you run the washing machine?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectQuizOption(this, 0, 'unit-e12')">When it's full of clothes</div>
+                            <div class="option" onclick="selectQuizOption(this, 1, 'unit-e12')">When you have one shirt to wash</div>
+                            <div class="option" onclick="selectQuizOption(this, 2, 'unit-e12')">Every single day no matter what</div>
+                        </div>
+                    </div>
+
+                    <button class="quiz-button" onclick="checkQuiz('unit-e12')">✓ Check My Answers!</button>
+                    <div class="quiz-score" id="quiz-score-unit-e12"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Unit E1.3 -->
+        <div id="unit-e13" class="page">
+            <div class="card">
+                <h2 class="clickable-audio">🌍 E1.3: Water Around the World</h2>
+                <p class="clickable-audio">Did you know that not everyone in the world has clean water to drink? Let's learn about water on Earth and why it's important to help communities get clean water!</p>
+                
+                <h3 class="clickable-audio">💧 Fresh Water on Earth</h3>
+                <p class="clickable-audio">Our planet is covered with water, but most of it is salty ocean water that we can't drink!</p>
+                
+                <div class="example-box">
+                    <h4 class="clickable-audio">Water Facts About Earth:</h4>
+                    <ul>
+                        <li class="clickable-audio">🌊 <strong>97% of water is salty ocean water</strong> - we can't drink this!</li>
+                        <li class="clickable-audio">🧊 <strong>2% is frozen in glaciers and ice</strong> - this is hard to reach!</li>
+                        <li class="clickable-audio">💧 <strong>Only 1% is fresh water</strong> we can use - in rivers, lakes, and underground!</li>
+                    </ul>
+                </div>
+                
+                <h3 class="clickable-audio">🚰 Access to Clean Water</h3>
+                <p class="clickable-audio">In Canada, we're very lucky! We can turn on a tap and get clean water. But many people around the world don't have this.</p>
+                
+                <div class="example-box">
+                    <h4 class="clickable-audio">Different Water Situations:</h4>
+                    <ul>
+                        <li class="clickable-audio">✅ <strong>Some Communities Have:</strong> Clean water from taps, wells, and water treatment plants.</li>
+                        <li class="clickable-audio">⚠️ <strong>Some Communities Face:</strong> Long walks to get water, dirty water that makes people sick, not enough water for everyone.</li>
+                        <li class="clickable-audio">🏘️ <strong>Even in Canada:</strong> Some First Nations communities don't have safe drinking water and have to boil their water first.</li>
+                    </ul>
+                </div>
+                
+                <h3 class="clickable-audio">😔 When Communities Don't Have Clean Water</h3>
+                <p class="clickable-audio">Not having clean water affects people in many ways:</p>
+                
+                <div class="example-box">
+                    <h4 class="clickable-audio">How It Impacts Communities:</h4>
+                    <ul>
+                        <li class="clickable-audio">🤒 <strong>Health:</strong> Dirty water can make people sick with diseases.</li>
+                        <li class="clickable-audio">🚶‍♀️ <strong>Time:</strong> People (often girls and women) spend hours walking to get water instead of going to school or work.</li>
+                        <li class="clickable-audio">🌱 <strong>Growing Food:</strong> Without clean water, it's hard to grow crops and gardens.</li>
+                        <li class="clickable-audio">🧼 <strong>Hygiene:</strong> It's hard to wash hands, clean clothes, or keep things clean.</li>
+                        <li class="clickable-audio">🏫 <strong>Education:</strong> Kids miss school when they're sick or fetching water.</li>
+                    </ul>
+                </div>
+                
+                <h3 class="clickable-audio">🌟 Why Everyone Deserves Clean Water</h3>
+                <p class="clickable-audio">Clean water is a basic human right! Everyone needs it to:</p>
+                
+                <ul>
+                    <li class="clickable-audio">💧 Drink and stay healthy</li>
+                    <li class="clickable-audio">🍲 Cook food</li>
+                    <li class="clickable-audio">🧼 Stay clean and prevent disease</li>
+                    <li class="clickable-audio">🌾 Grow food and plants</li>
+                    <li class="clickable-audio">🏥 Keep hospitals and schools running</li>
+                </ul>
+                
+                <h3 class="clickable-audio">💪 How We Can Help!</h3>
+                <p class="clickable-audio">Even though you're in Grade 2, you can make a difference!</p>
+                
+                <div class="example-box">
+                    <h4 class="clickable-audio">Ways to Help:</h4>
+                    <ul>
+                        <li class="clickable-audio">💰 <strong>Fundraise:</strong> Have a bake sale or lemonade stand and donate money to organizations that build wells in communities.</li>
+                        <li class="clickable-audio">📚 <strong>Learn and Teach:</strong> Learn about water issues and teach your friends and family!</li>
+                        <li class="clickable-audio">💧 <strong>Don't Waste Water:</strong> When we save water, there's more for everyone!</li>
+                        <li class="clickable-audio">✉️ <strong>Write Letters:</strong> Write to community leaders asking them to help provide clean water for everyone.</li>
+                        <li class="clickable-audio">🎨 <strong>Raise Awareness:</strong> Make posters about the importance of clean water!</li>
+                    </ul>
+                </div>
+                
+                <p class="clickable-audio">Remember: Water connects us all! When we help others get clean water, we make the world better for everyone! 🌍💙</p>
+            </div>
+
+            <!-- Drag and Drop -->
+            <div class="card">
+                <div class="drag-drop-container">
+                    <h3 class="clickable-audio">🎮 Match Water Types!</h3>
+                    <p class="clickable-audio">Drag each water source to the correct type!</p>
+                    
+                    <div class="drag-items-container" id="drag-items-unit-e13">
+                        <div class="drag-item" draggable="true" data-category="fresh">🏞️ River Water</div>
+                        <div class="drag-item" draggable="true" data-category="salt">🌊 Ocean Water</div>
+                        <div class="drag-item" draggable="true" data-category="fresh">💧 Lake Water</div>
+                        <div class="drag-item" draggable="true" data-category="salt">🏖️ Sea Water</div>
+                        <div class="drag-item" draggable="true" data-category="fresh">🚰 Well Water</div>
+                        <div class="drag-item" draggable="true" data-category="fresh">🌧️ Rain Water</div>
+                    </div>
+                    
+                    <div class="drop-zones" id="drop-zones-unit-e13">
+                        <div class="drop-zone" data-zone="fresh"><h4>💧 Fresh Water (We Can Drink!)</h4></div>
+                        <div class="drop-zone" data-zone="salt"><h4>🌊 Salt Water (Can't Drink)</h4></div>
+                    </div>
+
+                    <button class="drag-check-button" onclick="checkDragDrop('unit-e13')">✓ Check My Answers!</button>
+                    <div class="drag-feedback" id="drag-feedback-unit-e13"></div>
+                </div>
+
+                <!-- Quiz Section -->
+                <div class="quiz-container">
+                    <h3 class="clickable-audio">🧠 Test Your Knowledge!</h3>
+                    
+                    <div class="question" data-answer="2">
+                        <div class="question-text clickable-audio">1. How much of Earth's water is fresh water we can easily use?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectQuizOption(this, 0, 'unit-e13')">About half of all water</div>
+                            <div class="option" onclick="selectQuizOption(this, 1, 'unit-e13')">Most of the water</div>
+                            <div class="option" onclick="selectQuizOption(this, 2, 'unit-e13')">Only about 1%</div>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="1">
+                        <div class="question-text clickable-audio">2. What happens when communities don't have clean water?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectQuizOption(this, 0, 'unit-e13')">Nothing changes</div>
+                            <div class="option" onclick="selectQuizOption(this, 1, 'unit-e13')">People can get sick and kids miss school</div>
+                            <div class="option" onclick="selectQuizOption(this, 2, 'unit-e13')">Everyone is happy</div>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="0">
+                        <div class="question-text clickable-audio">3. Most of Earth's water is:</div>
+                        <div class="options">
+                            <div class="option" onclick="selectQuizOption(this, 0, 'unit-e13')">Salty ocean water</div>
+                            <div class="option" onclick="selectQuizOption(this, 1, 'unit-e13')">Fresh drinking water</div>
+                            <div class="option" onclick="selectQuizOption(this, 2, 'unit-e13')">In swimming pools</div>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="2">
+                        <div class="question-text clickable-audio">4. How can you help communities get clean water?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectQuizOption(this, 0, 'unit-e13')">Do nothing</div>
+                            <div class="option" onclick="selectQuizOption(this, 1, 'unit-e13')">Waste lots of water</div>
+                            <div class="option" onclick="selectQuizOption(this, 2, 'unit-e13')">Fundraise or raise awareness</div>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="1">
+                        <div class="question-text clickable-audio">5. Why is clean water important?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectQuizOption(this, 0, 'unit-e13')">It's not really important</div>
+                            <div class="option" onclick="selectQuizOption(this, 1, 'unit-e13')">It's a basic human right everyone needs</div>
+                            <div class="option" onclick="selectQuizOption(this, 2, 'unit-e13')">Only rich people need it</div>
+                        </div>
+                    </div>
+
+                    <button class="quiz-button" onclick="checkQuiz('unit-e13')">✓ Check My Answers!</button>
+                    <div class="quiz-score" id="quiz-score-unit-e13"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Unit E2.1 -->
+        <div id="unit-e21" class="page">
+            <div class="card">
+                <h2 class="clickable-audio">🎈 E2.1: Properties of Air and Water</h2>
+                <p class="clickable-audio">Air and water are amazing! They have special properties that make them unique. Let's discover what makes them so special!</p>
+                
+                <h3 class="clickable-audio">💨 Key Properties of Air</h3>
+                <p class="clickable-audio">Even though we can't see air, it has special properties we can observe!</p>
+                
+                <div class="example-box">
+                    <h4 class="clickable-audio">Air's Amazing Properties:</h4>
+                    <ul>
+                        <li class="clickable-audio">🫥 <strong>Invisible:</strong> We can't see air, but we know it's all around us!</li>
+                        <li class="clickable-audio">🎈 <strong>Takes Up Space:</strong> Air fills up balloons, balls, and bubbles!</li>
+                        <li class="clickable-audio">💨 <strong>Can Move:</strong> Air moves as wind. You can feel it blow!</li>
+                        <li class="clickable-audio">🪶 <strong>Has Weight:</strong> Air is very light, but it does have weight!</li>
+                        <li class="clickable-audio">🎯 <strong>Can Be Compressed:</strong> You can squeeze air into a smaller space (like pumping up a tire!).</li>
+                        <li class="clickable-audio">🌡️ <strong>Changes with Temperature:</strong> Hot air rises up, cold air sinks down!</li>
+                    </ul>
+                </div>
+                
+                <h3 class="clickable-audio">💧 Key Properties of Water</h3>
+                <p class="clickable-audio">Water also has super cool properties!</p>
+                
+                <div class="example-box">
+                    <h4 class="clickable-audio">Water's Amazing Properties:</h4>
+                    <ul>
+                        <li class="clickable-audio">👀 <strong>Can See Through It:</strong> Water is transparent - you can see through clean water!</li>
+                        <li class="clickable-audio">💧 <strong>Flows and Pours:</strong> Water is a liquid that flows and takes the shape of its container.</li>
+                        <li class="clickable-audio">🌊 <strong>Makes Waves:</strong> Water can make waves and ripples!</li>
+                        <li class="clickable-audio">⚖️ <strong>Has Weight:</strong> Water is heavier than air. A bucket of water is heavy to carry!</li>
+                        <li class="clickable-audio">🧊 <strong>Can Change States:</strong> Water can be liquid, solid (ice), or gas (steam)!</li>
+                        <li class="clickable-audio">🔗 <strong>Molecules Stick Together:</strong> Water drops are round because water molecules like to stick together!</li>
+                    </ul>
+                </div>
+                
+                <h3 class="clickable-audio">🔬 Fun Experiments to Try!</h3>
+                <p class="clickable-audio">Here are some ways to see air and water properties in action:</p>
+                
+                <div class="example-box">
+                    <h4 class="clickable-audio">Air Experiments:</h4>
+                    <ul>
+                        <li class="clickable-audio">🎈 <strong>Balloon Test:</strong> Blow up a balloon to see that air takes up space!</li>
+                        <li class="clickable-audio">🫙 <strong>Upside-Down Cup:</strong> Put a cup upside-down in water. The air inside keeps the water out!</li>
+                        <li class="clickable-audio">🪁 <strong>Make a Kite:</strong> Fly a kite to feel air pushing against it!</li>
+                    </ul>
+                </div>
+                
+                <div class="example-box">
+                    <h4 class="clickable-audio">Water Experiments:</h4>
+                    <ul>
+                        <li class="clickable-audio">🥛 <strong>Pour Between Cups:</strong> Pour water to see how it flows and takes the shape of each container!</li>
+                        <li class="clickable-audio">💧 <strong>Water Drop:</strong> Use a dropper to make water drops. Watch how they're round!</li>
+                        <li class="clickable-audio">🧊 <strong>Freeze Water:</strong> Make ice cubes to see water change from liquid to solid!</li>
+                    </ul>
+                </div>
+                
+                <h3 class="clickable-audio">🤔 Comparing Air and Water</h3>
+                <p class="clickable-audio">Let's compare these two important substances!</p>
+                
+                <ul>
+                    <li class="clickable-audio"><strong>Same:</strong> Both are all around us, both take up space, both are necessary for life!</li>
+                    <li class="clickable-audio"><strong>Different:</strong> We can see water but not air. Water is heavier than air. Water flows, but air floats!</li>
+                </ul>
+                
+                <p class="clickable-audio">Both air and water are essential for life on Earth! 🌍</p>
+            </div>
+
+            <!-- Drag and Drop -->
+            <div class="card">
+                <div class="drag-drop-container">
+                    <h3 class="clickable-audio">🎮 Sort: Air or Water Property?</h3>
+                    <p class="clickable-audio">Drag each property to the correct substance!</p>
+                    
+                    <div class="drag-items-container" id="drag-items-unit-e21">
+                        <div class="drag-item" draggable="true" data-category="air">🫥 Invisible</div>
+                        <div class="drag-item" draggable="true" data-category="water">💧 You can see through it</div>
+                        <div class="drag-item" draggable="true" data-category="air">💨 Feels like wind</div>
+                        <div class="drag-item" draggable="true" data-category="water">🌊 Flows and makes waves</div>
+                        <div class="drag-item" draggable="true" data-category="air">🎈 Fills up balloons</div>
+                        <div class="drag-item" draggable="true" data-category="water">🧊 Can turn into ice</div>
+                    </div>
+                    
+                    <div class="drop-zones" id="drop-zones-unit-e21">
+                        <div class="drop-zone" data-zone="air"><h4>💨 Air Property</h4></div>
+                        <div class="drop-zone" data-zone="water"><h4>💧 Water Property</h4></div>
+                    </div>
+
+                    <button class="drag-check-button" onclick="checkDragDrop('unit-e21')">✓ Check My Answers!</button>
+                    <div class="drag-feedback" id="drag-feedback-unit-e21"></div>
+                </div>
+
+                <!-- Quiz Section -->
+                <div class="quiz-container">
+                    <h3 class="clickable-audio">🧠 Test Your Knowledge!</h3>
+                    
+                    <div class="question" data-answer="1">
+                        <div class="question-text clickable-audio">1. Can we see air?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectQuizOption(this, 0, 'unit-e21')">Yes, it's blue</div>
+                            <div class="option" onclick="selectQuizOption(this, 1, 'unit-e21')">No, air is invisible</div>
+                            <div class="option" onclick="selectQuizOption(this, 2, 'unit-e21')">Only at night</div>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="0">
+                        <div class="question-text clickable-audio">2. What happens when you blow up a balloon?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectQuizOption(this, 0, 'unit-e21')">Air fills it up and takes up space</div>
+                            <div class="option" onclick="selectQuizOption(this, 1, 'unit-e21')">Nothing happens</div>
+                            <div class="option" onclick="selectQuizOption(this, 2, 'unit-e21')">Water fills it up</div>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="2">
+                        <div class="question-text clickable-audio">3. What shape does water take?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectQuizOption(this, 0, 'unit-e21')">Always a square</div>
+                            <div class="option" onclick="selectQuizOption(this, 1, 'unit-e21')">Always a circle</div>
+                            <div class="option" onclick="selectQuizOption(this, 2, 'unit-e21')">The shape of its container</div>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="1">
+                        <div class="question-text clickable-audio">4. Which is heavier?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectQuizOption(this, 0, 'unit-e21')">A bucket of air</div>
+                            <div class="option" onclick="selectQuizOption(this, 1, 'unit-e21')">A bucket of water</div>
+                            <div class="option" onclick="selectQuizOption(this, 2, 'unit-e21')">They weigh the same</div>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="0">
+                        <div class="question-text clickable-audio">5. Why are water drops round?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectQuizOption(this, 0, 'unit-e21')">Water molecules stick together</div>
+                            <div class="option" onclick="selectQuizOption(this, 1, 'unit-e21')">Someone makes them round</div>
+                            <div class="option" onclick="selectQuizOption(this, 2, 'unit-e21')">They're not really round</div>
+                        </div>
+                    </div>
+
+                    <button class="quiz-button" onclick="checkQuiz('unit-e21')">✓ Check My Answers!</button>
+                    <div class="quiz-score" id="quiz-score-unit-e21"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Unit E2.2 -->
+        <div id="unit-e22" class="page">
+            <div class="card">
+                <h2 class="clickable-audio">🏞️ E2.2: Where Water Comes From</h2>
+                <p class="clickable-audio">Have you ever wondered where the water in your tap comes from? Let's explore water sources in nature and in our cities!</p>
+                
+                <h3 class="clickable-audio">🌿 Natural Water Sources</h3>
+                <p class="clickable-audio">Nature has many places where we find water!</p>
+                
+                <div class="example-box">
+                    <h4 class="clickable-audio">Water in Nature:</h4>
+                    <ul>
+                        <li class="clickable-audio">🏞️ <strong>Rivers:</strong> Fresh water that flows from mountains to the ocean. We can drink river water after it's cleaned!</li>
+                        <li class="clickable-audio">💧 <strong>Lakes:</strong> Large bodies of fresh water. The Great Lakes are huge lakes in Canada!</li>
+                        <li class="clickable-audio">🏞️ <strong>Streams and Creeks:</strong> Small flowing water - like tiny rivers!</li>
+                        <li class="clickable-audio">🌧️ <strong>Rain:</strong> Water falls from clouds! Rain fills rivers and lakes.</li>
+                        <li class="clickable-audio">❄️ <strong>Snow and Ice:</strong> Frozen water on mountains. When it melts, it flows down as water!</li>
+                        <li class="clickable-audio">💧 <strong>Underground Water:</strong> Water is stored deep in the ground in spaces between rocks!</li>
+                        <li class="clickable-audio">🏔️ <strong>Springs:</strong> Places where underground water comes up to the surface naturally!</li>
+                    </ul>
+                </div>
+                
+                <h3 class="clickable-audio">🏗️ Built Environment Water Sources</h3>
+                <p class="clickable-audio">People have built systems to bring water to our homes and cities!</p>
+                
+                <div class="example-box">
+                    <h4 class="clickable-audio">How We Get Water:</h4>
+                    <ul>
+                        <li class="clickable-audio">🚰 <strong>Water Taps:</strong> Turn the handle and clean water comes out! This water travels through pipes from treatment plants.</li>
+                        <li class="clickable-audio">🏢 <strong>Water Treatment Plants:</strong> Buildings where dirty water is cleaned so it's safe to drink!</li>
+                        <li class="clickable-audio">🕳️ <strong>Wells:</strong> Deep holes drilled into the ground to reach underground water.</li>
+                        <li class="clickable-audio">🏊 <strong>Reservoirs:</strong> Human-made lakes that store water for cities to use!</li>
+                        <li class="clickable-audio">🚿 <strong>Water Towers:</strong> Tall tanks that store clean water and help it flow to homes.</li>
+                        <li class="clickable-audio">🚱 <strong>Pipes:</strong> Underground tubes that carry water to every house and building!</li>
+                    </ul>
+                </div>
+                
+                <h3 class="clickable-audio">🚰 From River to Your Tap!</h3>
+                <p class="clickable-audio">Here's the journey water takes to reach your home:</p>
+                
+                <div class="example-box">
+                    <h4 class="clickable-audio">The Water Journey:</h4>
+                    <ul>
+                        <li class="clickable-audio">1️⃣ Water starts in a river, lake, or underground source</li>
+                        <li class="clickable-audio">2️⃣ Pipes carry it to a water treatment plant</li>
+                        <li class="clickable-audio">3️⃣ The plant removes dirt and germs to make it clean and safe</li>
+                        <li class="clickable-audio">4️⃣ Clean water goes into storage towers or reservoirs</li>
+                        <li class="clickable-audio">5️⃣ Pipes carry water underground to your neighborhood</li>
+                        <li class="clickable-audio">6️⃣ Water flows through pipes into your house</li>
+                        <li class="clickable-audio">7️⃣ You turn on the tap and get clean, safe water! 🚰</li>
+                    </ul>
+                </div>
+                
+                <h3 class="clickable-audio">🌍 Protecting Our Water Sources</h3>
+                <p class="clickable-audio">We need to keep water sources clean!</p>
+                
+                <ul>
+                    <li class="clickable-audio">Don't throw garbage in rivers, lakes, or streams</li>
+                    <li class="clickable-audio">Keep chemicals away from water sources</li>
+                    <li class="clickable-audio">Plant trees near rivers - they help keep water clean!</li>
+                    <li class="clickable-audio">Protect wetlands - they filter water naturally!</li>
+                </ul>
+                
+                <p class="clickable-audio">Remember: We all share the same water! Let's keep our sources clean! 💧</p>
+            </div>
+
+            <!-- Drag and Drop -->
+            <div class="card">
+                <div class="drag-drop-container">
+                    <h3 class="clickable-audio">🎮 Sort: Natural or Built Water Source?</h3>
+                    <p class="clickable-audio">Drag each water source to the correct category!</p>
+                    
+                    <div class="drag-items-container" id="drag-items-unit-e22">
+                        <div class="drag-item" draggable="true" data-category="natural">🏞️ River</div>
+                        <div class="drag-item" draggable="true" data-category="built">🚰 Water Tap</div>
+                        <div class="drag-item" draggable="true" data-category="natural">💧 Lake</div>
+                        <div class="drag-item" draggable="true" data-category="built">🏢 Water Treatment Plant</div>
+                        <div class="drag-item" draggable="true" data-category="natural">🌧️ Rain</div>
+                        <div class="drag-item" draggable="true" data-category="built">🚿 Water Tower</div>
+                    </div>
+                    
+                    <div class="drop-zones" id="drop-zones-unit-e22">
+                        <div class="drop-zone" data-zone="natural"><h4>🌿 Natural Environment</h4></div>
+                        <div class="drop-zone" data-zone="built"><h4>🏗️ Built Environment</h4></div>
+                    </div>
+
+                    <button class="drag-check-button" onclick="checkDragDrop('unit-e22')">✓ Check My Answers!</button>
+                    <div class="drag-feedback" id="drag-feedback-unit-e22"></div>
+                </div>
+
+                <!-- Quiz Section -->
+                <div class="quiz-container">
+                    <h3 class="clickable-audio">🧠 Test Your Knowledge!</h3>
+                    
+                    <div class="question" data-answer="1">
+                        <div class="question-text clickable-audio">1. Where does the water in your tap come from?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectQuizOption(this, 0, 'unit-e22')">It appears by magic</div>
+                            <div class="option" onclick="selectQuizOption(this, 1, 'unit-e22')">From rivers, lakes, or underground, cleaned at treatment plants</div>
+                            <div class="option" onclick="selectQuizOption(this, 2, 'unit-e22')">From the ocean</div>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="2">
+                        <div class="question-text clickable-audio">2. What is a reservoir?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectQuizOption(this, 0, 'unit-e22')">A type of fish</div>
+                            <div class="option" onclick="selectQuizOption(this, 1, 'unit-e22')">A kind of boat</div>
+                            <div class="option" onclick="selectQuizOption(this, 2, 'unit-e22')">A human-made lake that stores water</div>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="0">
+                        <div class="question-text clickable-audio">3. What happens at a water treatment plant?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectQuizOption(this, 0, 'unit-e22')">Dirty water is cleaned to make it safe</div>
+                            <div class="option" onclick="selectQuizOption(this, 1, 'unit-e22')">Water is made dirty</div>
+                            <div class="option" onclick="selectQuizOption(this, 2, 'unit-e22')">Nothing happens</div>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="1">
+                        <div class="question-text clickable-audio">4. Where is underground water found?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectQuizOption(this, 0, 'unit-e22')">In the clouds</div>
+                            <div class="option" onclick="selectQuizOption(this, 1, 'unit-e22')">Deep in the ground between rocks</div>
+                            <div class="option" onclick="selectQuizOption(this, 2, 'unit-e22')">On top of mountains</div>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="2">
+                        <div class="question-text clickable-audio">5. How should we protect water sources?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectQuizOption(this, 0, 'unit-e22')">Throw garbage in them</div>
+                            <div class="option" onclick="selectQuizOption(this, 1, 'unit-e22')">Pour chemicals in them</div>
+                            <div class="option" onclick="selectQuizOption(this, 2, 'unit-e22')">Keep them clean and don't pollute</div>
+                        </div>
+                    </div>
+
+                    <button class="quiz-button" onclick="checkQuiz('unit-e22')">✓ Check My Answers!</button>
+                    <div class="quiz-score" id="quiz-score-unit-e22"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Unit E2.3 -->
+        <div id="unit-e23" class="page">
+            <div class="card">
+                <h2 class="clickable-audio">🔄 E2.3: The Water Cycle</h2>
+                <p class="clickable-audio">Did you know that water goes on an amazing journey over and over again? It's called the water cycle! The same water has been going around for millions of years!</p>
+                
+                <h3 class="clickable-audio">💧 What is the Water Cycle?</h3>
+                <p class="clickable-audio">The water cycle is the journey water takes as it moves from the ground, to the sky, and back again. It never stops!</p>
+                
+                <h3 class="clickable-audio">🌟 The Four Stages of the Water Cycle</h3>
+                
+                <div class="example-box">
+                    <h4 class="clickable-audio">1. Evaporation ☀️💧</h4>
+                    <p class="clickable-audio"><strong>What happens:</strong> The sun heats up water in rivers, lakes, and oceans. The water turns into an invisible gas called water vapor and rises up into the air!</p>
+                    <ul>
+                        <li class="clickable-audio">Water disappears from puddles on sunny days - it evaporates!</li>
+                        <li class="clickable-audio">Water vapor is invisible - you can't see it!</li>
+                        <li class="clickable-audio">The hotter the sun, the faster water evaporates!</li>
+                    </ul>
+                </div>
+                
+                <div class="example-box">
+                    <h4 class="clickable-audio">2. Condensation ☁️</h4>
+                    <p class="clickable-audio"><strong>What happens:</strong> When water vapor goes high up in the sky, it gets cold. The cold makes the water vapor turn back into tiny water droplets. These droplets stick together to form clouds!</p>
+                    <ul>
+                        <li class="clickable-audio">Clouds are made of millions of tiny water droplets!</li>
+                        <li class="clickable-audio">When you see your breath on a cold day, that's condensation!</li>
+                        <li class="clickable-audio">Water droplets on the outside of a cold glass - that's condensation too!</li>
+                    </ul>
+                </div>
+                
+                <div class="example-box">
+                    <h4 class="clickable-audio">3. Precipitation 🌧️❄️</h4>
+                    <p class="clickable-audio"><strong>What happens:</strong> When clouds get too heavy with water droplets, the water falls back down to Earth! This can be rain, snow, sleet, or hail!</p>
+                    <ul>
+                        <li class="clickable-audio">Rain is liquid water falling from clouds</li>
+                        <li class="clickable-audio">Snow is frozen water falling from clouds</li>
+                        <li class="clickable-audio">Hail is ice balls that fall from clouds</li>
+                        <li class="clickable-audio">Sleet is rain that freezes as it falls</li>
+                    </ul>
+                </div>
+                
+                <div class="example-box">
+                    <h4 class="clickable-audio">4. Collection 🌊</h4>
+                    <p class="clickable-audio"><strong>What happens:</strong> When water falls to Earth, it collects in rivers, lakes, oceans, and underground! Some water soaks into the ground. Then the whole cycle starts again!</p>
+                    <ul>
+                        <li class="clickable-audio">Rain fills up rivers, lakes, and oceans</li>
+                        <li class="clickable-audio">Some water soaks deep into the ground</li>
+                        <li class="clickable-audio">Snow piles up on mountains and melts in spring</li>
+                        <li class="clickable-audio">The cycle never ends - it goes round and round!</li>
+                    </ul>
+                </div>
+                
+                <h3 class="clickable-audio">🔄 The Cycle Never Stops!</h3>
+                <p class="clickable-audio">The water cycle has been happening for billions of years! The water you drink today might have:</p>
+                
+                <ul>
+                    <li class="clickable-audio">Been in a cloud last week! ☁️</li>
+                    <li class="clickable-audio">Been drunk by a dinosaur millions of years ago! 🦕</li>
+                    <li class="clickable-audio">Been part of the ocean! 🌊</li>
+                    <li class="clickable-audio">Fallen as snow on a mountain! ❄️</li>
+                </ul>
+                
+                <p class="clickable-audio">Water keeps moving in this amazing cycle forever! The water cycle is how Earth recycles water! 🔄💧</p>
+            </div>
+
+            <!-- Drag and Drop -->
+            <div class="card">
+                <div class="drag-drop-container">
+                    <h3 class="clickable-audio">🎮 Put the Water Cycle in Order!</h3>
+                    <p class="clickable-audio">Drag the stages to show the correct order!</p>
+                    
+                    <div class="drag-items-container" id="drag-items-unit-e23">
+                        <div class="drag-item" draggable="true" data-category="1">☀️ Evaporation</div>
+                        <div class="drag-item" draggable="true" data-category="2">☁️ Condensation</div>
+                        <div class="drag-item" draggable="true" data-category="3">🌧️ Precipitation</div>
+                        <div class="drag-item" draggable="true" data-category="4">🌊 Collection</div>
+                    </div>
+                    
+                    <div class="drop-zones" id="drop-zones-unit-e23">
+                        <div class="drop-zone" data-zone="1"><h4>1️⃣ First</h4></div>
+                        <div class="drop-zone" data-zone="2"><h4>2️⃣ Second</h4></div>
+                        <div class="drop-zone" data-zone="3"><h4>3️⃣ Third</h4></div>
+                        <div class="drop-zone" data-zone="4"><h4>4️⃣ Fourth</h4></div>
+                    </div>
+
+                    <button class="drag-check-button" onclick="checkDragDrop('unit-e23')">✓ Check My Answers!</button>
+                    <div class="drag-feedback" id="drag-feedback-unit-e23"></div>
+                </div>
+
+                <!-- Quiz Section -->
+                <div class="quiz-container">
+                    <h3 class="clickable-audio">🧠 Test Your Knowledge!</h3>
+                    
+                    <div class="question" data-answer="0">
+                        <div class="question-text clickable-audio">1. What is evaporation?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectQuizOption(this, 0, 'unit-e23')">When the sun heats water and it turns into vapor</div>
+                            <div class="option" onclick="selectQuizOption(this, 1, 'unit-e23')">When water falls from clouds</div>
+                            <div class="option" onclick="selectQuizOption(this, 2, 'unit-e23')">When water freezes</div>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="1">
+                        <div class="question-text clickable-audio">2. What are clouds made of?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectQuizOption(this, 0, 'unit-e23')">Cotton candy</div>
+                            <div class="option" onclick="selectQuizOption(this, 1, 'unit-e23')">Tiny water droplets</div>
+                            <div class="option" onclick="selectQuizOption(this, 2, 'unit-e23')">Smoke</div>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="2">
+                        <div class="question-text clickable-audio">3. What is precipitation?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectQuizOption(this, 0, 'unit-e23')">Water vapor going up</div>
+                            <div class="option" onclick="selectQuizOption(this, 1, 'unit-e23')">Clouds forming</div>
+                            <div class="option" onclick="selectQuizOption(this, 2, 'unit-e23')">Water falling from clouds as rain or snow</div>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="0">
+                        <div class="question-text clickable-audio">4. Where does water collect after it falls?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectQuizOption(this, 0, 'unit-e23')">In rivers, lakes, oceans, and underground</div>
+                            <div class="option" onclick="selectQuizOption(this, 1, 'unit-e23')">Only in the clouds</div>
+                            <div class="option" onclick="selectQuizOption(this, 2, 'unit-e23')">It disappears forever</div>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="1">
+                        <div class="question-text clickable-audio">5. Does the water cycle ever stop?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectQuizOption(this, 0, 'unit-e23')">Yes, it stops at night</div>
+                            <div class="option" onclick="selectQuizOption(this, 1, 'unit-e23')">No, it goes on forever!</div>
+                            <div class="option" onclick="selectQuizOption(this, 2, 'unit-e23')">Yes, it stops in winter</div>
+                        </div>
+                    </div>
+
+                    <button class="quiz-button" onclick="checkQuiz('unit-e23')">✓ Check My Answers!</button>
+                    <div class="quiz-score" id="quiz-score-unit-e23"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Unit E2.4 -->
+        <div id="unit-e24" class="page">
+            <div class="card">
+                <h2 class="clickable-audio">🧊 E2.4: Three States of Water</h2>
+                <p class="clickable-audio">Water is amazing because it can change into three different forms! Let's learn about solid, liquid, and gas!</p>
+                
+                <h3 class="clickable-audio">💧 The Three States of Water</h3>
+                
+                <div class="example-box">
+                    <h4 class="clickable-audio">1. Solid Water (Ice) 🧊</h4>
+                    <p class="clickable-audio"><strong>What it is:</strong> When water gets very cold, it freezes and becomes hard ice!</p>
+                    <ul>
+                        <li class="clickable-audio">❄️ <strong>Freezing Point:</strong> Water freezes at 0°C (32°F)</li>
+                        <li class="clickable-audio">🧊 <strong>Examples:</strong> Ice cubes, icicles, snow, glaciers, frozen ponds</li>
+                        <li class="clickable-audio">🔧 <strong>Properties:</strong> Ice is hard, you can hold it, it has a definite shape</li>
+                        <li class="clickable-audio">🎈 <strong>Fun Fact:</strong> Ice floats on water! That's why ice cubes float in your drink!</li>
+                    </ul>
+                </div>
+                
+                <div class="example-box">
+                    <h4 class="clickable-audio">2. Liquid Water 💧</h4>
+                    <p class="clickable-audio"><strong>What it is:</strong> The normal water we see every day that flows and pours!</p>
+                    <ul>
+                        <li class="clickable-audio">🌡️ <strong>Temperature:</strong> Water is liquid between 0°C and 100°C</li>
+                        <li class="clickable-audio">💧 <strong>Examples:</strong> Tap water, rain, rivers, lakes, oceans</li>
+                        <li class="clickable-audio">🌊 <strong>Properties:</strong> Water flows, takes the shape of its container, you can pour it</li>
+                        <li class="clickable-audio">🥤 <strong>Fun Fact:</strong> We drink liquid water! Our bodies need it every day!</li>
+                    </ul>
+                </div>
+                
+                <div class="example-box">
+                    <h4 class="clickable-audio">3. Gas (Water Vapor/Steam) ♨️</h4>
+                    <p class="clickable-audio"><strong>What it is:</strong> When water gets very hot, it turns into an invisible gas called water vapor!</p>
+                    <ul>
+                        <li class="clickable-audio">♨️ <strong>Boiling Point:</strong> Water boils and becomes steam at 100°C (212°F)</li>
+                        <li class="clickable-audio">☁️ <strong>Examples:</strong> Steam from boiling water, water vapor in clouds, fog</li>
+                        <li class="clickable-audio">🫥 <strong>Properties:</strong> Water vapor is invisible, floats in the air, spreads out</li>
+                        <li class="clickable-audio">🔬 <strong>Fun Fact:</strong> Water vapor is always in the air around us, even when we can't see it!</li>
+                    </ul>
+                </div>
+                
+                <h3 class="clickable-audio">🌡️ How Temperature Changes Water!</h3>
+                <p class="clickable-audio">Temperature makes water change from one state to another!</p>
+                
+                <div class="example-box">
+                    <h4 class="clickable-audio">Temperature Changes:</h4>
+                    <ul>
+                        <li class="clickable-audio">🧊➡️💧 <strong>Melting:</strong> When ice gets warm, it melts into liquid water!</li>
+                        <li class="clickable-audio">💧➡️🧊 <strong>Freezing:</strong> When water gets cold, it freezes into solid ice!</li>
+                        <li class="clickable-audio">💧➡️♨️ <strong>Evaporating:</strong> When water gets hot, it evaporates into water vapor!</li>
+                        <li class="clickable-audio">♨️➡️💧 <strong>Condensing:</strong> When water vapor gets cold, it condenses back into liquid water!</li>
+                    </ul>
+                </div>
+                
+                <h3 class="clickable-audio">🔄 Water States in the Water Cycle</h3>
+                <p class="clickable-audio">Water changes states as it moves through the water cycle!</p>
+                
+                <ul>
+                    <li class="clickable-audio">💧 Water in lakes and oceans is <strong>liquid</strong></li>
+                    <li class="clickable-audio">☀️ The sun heats it and it evaporates into <strong>gas (water vapor)</strong></li>
+                    <li class="clickable-audio">☁️ Water vapor cools in the sky and condenses back into <strong>liquid</strong> droplets in clouds</li>
+                    <li class="clickable-audio">🌧️ Water falls as <strong>liquid</strong> rain</li>
+                    <li class="clickable-audio">❄️ If it's cold enough, water falls as <strong>solid</strong> snow or ice!</li>
+                </ul>
+                
+                <p class="clickable-audio">The same water keeps changing states over and over! 🔄</p>
+            </div>
+
+            <!-- Drag and Drop -->
+            <div class="card">
+                <div class="drag-drop-container">
+                    <h3 class="clickable-audio">🎮 Sort Water by State!</h3>
+                    <p class="clickable-audio">Drag each example to its state of water!</p>
+                    
+                    <div class="drag-items-container" id="drag-items-unit-e24">
+                        <div class="drag-item" draggable="true" data-category="solid">🧊 Ice Cube</div>
+                        <div class="drag-item" draggable="true" data-category="liquid">🌧️ Rain</div>
+                        <div class="drag-item" draggable="true" data-category="gas">♨️ Steam</div>
+                        <div class="drag-item" draggable="true" data-category="solid">❄️ Snow</div>
+                        <div class="drag-item" draggable="true" data-category="liquid">🌊 Ocean Water</div>
+                        <div class="drag-item" draggable="true" data-category="gas">☁️ Water Vapor in Clouds</div>
+                    </div>
+                    
+                    <div class="drop-zones" id="drop-zones-unit-e24">
+                        <div class="drop-zone" data-zone="solid"><h4>🧊 Solid (Ice)</h4></div>
+                        <div class="drop-zone" data-zone="liquid"><h4>💧 Liquid (Water)</h4></div>
+                        <div class="drop-zone" data-zone="gas"><h4>♨️ Gas (Vapor)</h4></div>
+                    </div>
+
+                    <button class="drag-check-button" onclick="checkDragDrop('unit-e24')">✓ Check My Answers!</button>
+                    <div class="drag-feedback" id="drag-feedback-unit-e24"></div>
+                </div>
+
+                <!-- Quiz Section -->
+                <div class="quiz-container">
+                    <h3 class="clickable-audio">🧠 Test Your Knowledge!</h3>
+                    
+                    <div class="question" data-answer="1">
+                        <div class="question-text clickable-audio">1. What are the three states of water?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectQuizOption(this, 0, 'unit-e24')">Hot, warm, and cold</div>
+                            <div class="option" onclick="selectQuizOption(this, 1, 'unit-e24')">Solid, liquid, and gas</div>
+                            <div class="option" onclick="selectQuizOption(this, 2, 'unit-e24')">Big, medium, and small</div>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="0">
+                        <div class="question-text clickable-audio">2. At what temperature does water freeze?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectQuizOption(this, 0, 'unit-e24')">0°C (32°F)</div>
+                            <div class="option" onclick="selectQuizOption(this, 1, 'unit-e24')">100°C (212°F)</div>
+                            <div class="option" onclick="selectQuizOption(this, 2, 'unit-e24')">50°C (122°F)</div>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="2">
+                        <div class="question-text clickable-audio">3. What happens when water gets very hot?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectQuizOption(this, 0, 'unit-e24')">It turns into ice</div>
+                            <div class="option" onclick="selectQuizOption(this, 1, 'unit-e24')">Nothing happens</div>
+                            <div class="option" onclick="selectQuizOption(this, 2, 'unit-e24')">It evaporates into water vapor</div>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="1">
+                        <div class="question-text clickable-audio">4. Which is an example of solid water?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectQuizOption(this, 0, 'unit-e24')">Rain</div>
+                            <div class="option" onclick="selectQuizOption(this, 1, 'unit-e24')">Ice cube</div>
+                            <div class="option" onclick="selectQuizOption(this, 2, 'unit-e24')">Steam</div>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="0">
+                        <div class="question-text clickable-audio">5. Can you see water vapor?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectQuizOption(this, 0, 'unit-e24')">No, it's invisible</div>
+                            <div class="option" onclick="selectQuizOption(this, 1, 'unit-e24')">Yes, it's always visible</div>
+                            <div class="option" onclick="selectQuizOption(this, 2, 'unit-e24')">Only at night</div>
+                        </div>
+                    </div>
+
+                    <button class="quiz-button" onclick="checkQuiz('unit-e24')">✓ Check My Answers!</button>
+                    <div class="quiz-score" id="quiz-score-unit-e24"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Unit E2.5 -->
+        <div id="unit-e25" class="page">
+            <div class="card">
+                <h2 class="clickable-audio">🌍 E2.5: Why We Need Air and Water</h2>
+                <p class="clickable-audio">Air and water are the most important things on Earth! Without them, nothing could live. Let's learn why all living things need air and water!</p>
+                
+                <h3 class="clickable-audio">💨 Why Living Things Need Air</h3>
+                <p class="clickable-audio">Air is everywhere around us, and we need it to survive!</p>
+                
+                <div class="example-box">
+                    <h4 class="clickable-audio">How People Need Air:</h4>
+                    <ul>
+                        <li class="clickable-audio">🫁 <strong>Breathing:</strong> We breathe in oxygen from the air. Our lungs use it to give us energy!</li>
+                        <li class="clickable-audio">💪 <strong>Energy:</strong> Oxygen helps our body turn food into energy so we can run, play, and grow!</li>
+                        <li class="clickable-audio">🧠 <strong>Brain Power:</strong> Our brain needs lots of oxygen to think and learn!</li>
+                        <li class="clickable-audio">⏱️ <strong>Can't Wait:</strong> We can only survive a few minutes without air!</li>
+                    </ul>
+                </div>
+                
+                <div class="example-box">
+                    <h4 class="clickable-audio">How Animals Need Air:</h4>
+                    <ul>
+                        <li class="clickable-audio">🐕 <strong>Dogs and Cats:</strong> Breathe air through their noses and lungs, just like us!</li>
+                        <li class="clickable-audio">🐦 <strong>Birds:</strong> Need air to breathe AND to fly! Air helps lift them up!</li>
+                        <li class="clickable-audio">🐠 <strong>Fish:</strong> Use gills to get oxygen from the water!</li>
+                        <li class="clickable-audio">🐛 <strong>Insects:</strong> Breathe through tiny holes in their bodies!</li>
+                    </ul>
+                </div>
+                
+                <div class="example-box">
+                    <h4 class="clickable-audio">How Plants Need Air:</h4>
+                    <ul>
+                        <li class="clickable-audio">🌳 <strong>Photosynthesis:</strong> Plants take in carbon dioxide from air and make oxygen for us!</li>
+                        <li class="clickable-audio">🌱 <strong>Growing:</strong> Plants need air around their roots to grow strong!</li>
+                        <li class="clickable-audio">🔄 <strong>Trade Off:</strong> We breathe in oxygen and breathe out carbon dioxide. Plants do the opposite!</li>
+                    </ul>
+                </div>
+                
+                <h3 class="clickable-audio">💧 Why Living Things Need Water</h3>
+                <p class="clickable-audio">Water is in every living thing! We can't survive without it!</p>
+                
+                <div class="example-box">
+                    <h4 class="clickable-audio">How People Need Water:</h4>
+                    <ul>
+                        <li class="clickable-audio">💧 <strong>Our Bodies:</strong> About 60% of your body is made of water!</li>
+                        <li class="clickable-audio">🍎 <strong>Digestion:</strong> Water helps break down food in your stomach!</li>
+                        <li class="clickable-audio">🌡️ <strong>Temperature:</strong> Sweating (which is water) keeps us cool when we're hot!</li>
+                        <li class="clickable-audio">🧠 <strong>Brain Function:</strong> Your brain needs water to work properly!</li>
+                        <li class="clickable-audio">🚚 <strong>Transportation:</strong> Blood (which is mostly water) carries nutrients all over your body!</li>
+                        <li class="clickable-audio">⏱️ <strong>Can't Wait Long:</strong> We can only survive about 3 days without water!</li>
+                    </ul>
+                </div>
+                
+                <div class="example-box">
+                    <h4 class="clickable-audio">How Animals Need Water:</h4>
+                    <ul>
+                        <li class="clickable-audio">🐘 <strong>Elephants:</strong> Drink 50 gallons of water every day!</li>
+                        <li class="clickable-audio">🐪 <strong>Camels:</strong> Can store water in their bodies for long desert trips!</li>
+                        <li class="clickable-audio">🐸 <strong>Frogs:</strong> Need to live near water and keep their skin wet!</li>
+                        <li class="clickable-audio">🐋 <strong>Whales:</strong> Live in water all the time!</li>
+                        <li class="clickable-audio">🦜 <strong>Birds:</strong> Need water to drink and bathe in!</li>
+                    </ul>
+                </div>
+                
+                <div class="example-box">
+                    <h4 class="clickable-audio">How Plants Need Water:</h4>
+                    <ul>
+                        <li class="clickable-audio">🌻 <strong>Growing:</strong> Plants need water to grow tall and strong!</li>
+                        <li class="clickable-audio">🌿 <strong>Making Food:</strong> Plants use water and sunlight to make their own food!</li>
+                        <li class="clickable-audio">🌺 <strong>Stay Fresh:</strong> Water keeps plants from drying out!</li>
+                        <li class="clickable-audio">🍅 <strong>Fruits and Veggies:</strong> Many plants are mostly water - like watermelons (92% water!)</li>
+                    </ul>
+                </div>
+                
+                <h3 class="clickable-audio">🌟 We All Share Air and Water!</h3>
+                <p class="clickable-audio">Every living thing on Earth depends on clean air and water!</p>
+                
+                <ul>
+                    <li class="clickable-audio">🔄 <strong>Cycles:</strong> Air and water move in cycles, used by all living things!</li>
+                    <li class="clickable-audio">🤝 <strong>Connected:</strong> When we keep air and water clean, we help all living things!</li>
+                    <li class="clickable-audio">💚 <strong>Respect:</strong> We must protect air and water for ourselves, animals, and plants!</li>
+                    <li class="clickable-audio">🌍 <strong>One Earth:</strong> We all share the same air and water on our planet!</li>
+                </ul>
+                
+                <p class="clickable-audio">Remember: Air and water are gifts that keep all life on Earth alive! Let's protect them! 💧💨🌍</p>
+            </div>
+
+            <!-- Drag and Drop -->
+            <div class="card">
+                <div class="drag-drop-container">
+                    <h3 class="clickable-audio">🎮 Sort: Needs Air, Water, or Both?</h3>
+                    <p class="clickable-audio">Drag each living thing to what it needs!</p>
+                    
+                    <div class="drag-items-container" id="drag-items-unit-e25">
+                        <div class="drag-item" draggable="true" data-category="both">👦 People</div>
+                        <div class="drag-item" draggable="true" data-category="both">🐕 Dogs</div>
+                        <div class="drag-item" draggable="true" data-category="both">🌳 Trees</div>
+                        <div class="drag-item" draggable="true" data-category="both">🐦 Birds</div>
+                        <div class="drag-item" draggable="true" data-category="both">🐠 Fish</div>
+                        <div class="drag-item" draggable="true" data-category="both">🌻 Flowers</div>
+                    </div>
+                    
+                    <div class="drop-zones" id="drop-zones-unit-e25">
+                        <div class="drop-zone" data-zone="both"><h4>💧💨 BOTH Air AND Water!</h4></div>
+                    </div>
+
+                    <button class="drag-check-button" onclick="checkDragDrop('unit-e25')">✓ Check My Answers!</button>
+                    <div class="drag-feedback" id="drag-feedback-unit-e25"></div>
+                </div>
+
+                <!-- Quiz Section -->
+                <div class="quiz-container">
+                    <h3 class="clickable-audio">🧠 Test Your Knowledge!</h3>
+                    
+                    <div class="question" data-answer="0">
+                        <div class="question-text clickable-audio">1. What do we breathe in from air that gives us energy?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectQuizOption(this, 0, 'unit-e25')">Oxygen</div>
+                            <div class="option" onclick="selectQuizOption(this, 1, 'unit-e25')">Water</div>
+                            <div class="option" onclick="selectQuizOption(this, 2, 'unit-e25')">Food</div>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="1">
+                        <div class="question-text clickable-audio">2. About how much of your body is made of water?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectQuizOption(this, 0, 'unit-e25')">10%</div>
+                            <div class="option" onclick="selectQuizOption(this, 1, 'unit-e25')">60%</div>
+                            <div class="option" onclick="selectQuizOption(this, 2, 'unit-e25')">100%</div>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="2">
+                        <div class="question-text clickable-audio">3. What do plants make that we need to breathe?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectQuizOption(this, 0, 'unit-e25')">Carbon dioxide</div>
+                            <div class="option" onclick="selectQuizOption(this, 1, 'unit-e25')">Water</div>
+                            <div class="option" onclick="selectQuizOption(this, 2, 'unit-e25')">Oxygen</div>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="0">
+                        <div class="question-text clickable-audio">4. How do fish breathe?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectQuizOption(this, 0, 'unit-e25')">Through gills that get oxygen from water</div>
+                            <div class="option" onclick="selectQuizOption(this, 1, 'unit-e25')">Through their noses</div>
+                            <div class="option" onclick="selectQuizOption(this, 2, 'unit-e25')">They don't need to breathe</div>
+                        </div>
+                    </div>
+
+                    <div class="question" data-answer="1">
+                        <div class="question-text clickable-audio">5. Why is it important to keep air and water clean?</div>
+                        <div class="options">
+                            <div class="option" onclick="selectQuizOption(this, 0, 'unit-e25')">It's not important</div>
+                            <div class="option" onclick="selectQuizOption(this, 1, 'unit-e25')">All living things need clean air and water to survive</div>
+                            <div class="option" onclick="selectQuizOption(this, 2, 'unit-e25')">Only people need it</div>
+                        </div>
+                    </div>
+
+                    <button class="quiz-button" onclick="checkQuiz('unit-e25')">✓ Check My Answers!</button>
+                    <div class="quiz-score" id="quiz-score-unit-e25"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Text-to-Speech
+        function speak(text) {
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.rate = 0.85;
+            utterance.pitch = 1.1;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Click-to-read functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.clickable-audio').forEach(element => {
+                element.addEventListener('click', function() {
+                    document.querySelectorAll('.speaking').forEach(el => el.classList.remove('speaking'));
+                    this.classList.add('speaking');
+                    speak(this.textContent);
+                    setTimeout(() => this.classList.remove('speaking'), 2000);
+                });
+            });
+        });
+
+        // Page Navigation
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            document.querySelectorAll('.unit-button').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            event.target.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Quiz Functions
+        let selectedAnswersByUnit = {};
+
+        function selectQuizOption(element, optionIndex, unitId) {
+            const question = element.closest('.question');
+            const questionIndex = Array.from(question.parentElement.querySelectorAll('.question')).indexOf(question);
+            
+            if (!selectedAnswersByUnit[unitId]) {
+                selectedAnswersByUnit[unitId] = [];
+            }
+            
+            question.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+            element.classList.add('selected');
+            selectedAnswersByUnit[unitId][questionIndex] = optionIndex;
+        }
+
+        function checkQuiz(unitId) {
+            const page = document.getElementById(unitId);
+            const questions = page.querySelectorAll('.question');
+            let correct = 0;
+
+            questions.forEach((question, index) => {
+                const correctAnswer = parseInt(question.dataset.answer);
+                const options = question.querySelectorAll('.option');
+                
+                options.forEach((option, optIndex) => {
+                    option.classList.remove('correct', 'incorrect');
+                    if (optIndex === correctAnswer) {
+                        option.classList.add('correct');
+                    }
+                    if (selectedAnswersByUnit[unitId] && selectedAnswersByUnit[unitId][index] === optIndex && optIndex !== correctAnswer) {
+                        option.classList.add('incorrect');
+                    }
+                });
+
+                if (selectedAnswersByUnit[unitId] && selectedAnswersByUnit[unitId][index] === correctAnswer) {
+                    correct++;
+                }
+            });
+
+            const scoreDiv = document.getElementById(`quiz-score-${unitId}`);
+            scoreDiv.classList.add('show');
+            
+            if (correct === 5) {
+                scoreDiv.style.background = 'var(--grass-green)';
+                scoreDiv.style.color = 'white';
+                scoreDiv.textContent = `🌟 Perfect! ${correct}/5! You're an expert!`;
+                speak('Perfect! You got all 5 correct! You are an expert!');
+            } else if (correct >= 3) {
+                scoreDiv.style.background = 'var(--sun-yellow)';
+                scoreDiv.style.color = 'white';
+                scoreDiv.textContent = `👍 Good job! ${correct}/5! Keep learning!`;
+                speak(`Good job! You got ${correct} out of 5 correct!`);
+            } else {
+                scoreDiv.style.background = 'var(--coral-orange)';
+                scoreDiv.style.color = 'white';
+                scoreDiv.textContent = `📚 ${correct}/5. Try again!`;
+                speak(`You got ${correct} out of 5. Try again!`);
+            }
+
+            scoreDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // Drag and Drop
+        let draggedElement = null;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Setup drag and drop for all units
+            document.querySelectorAll('.drag-item').forEach(item => {
+                item.addEventListener('dragstart', function(e) {
+                    draggedElement = this;
+                    this.classList.add('dragging');
+                });
+                item.addEventListener('dragend', function(e) {
+                    this.classList.remove('dragging');
+                });
+            });
+
+            document.querySelectorAll('.drop-zone').forEach(zone => {
+                zone.addEventListener('dragover', function(e) {
+                    e.preventDefault();
+                    this.classList.add('drag-over');
+                });
+                zone.addEventListener('dragleave', function(e) {
+                    this.classList.remove('drag-over');
+                });
+                zone.addEventListener('drop', function(e) {
+                    e.preventDefault();
+                    this.classList.remove('drag-over');
+                    if (draggedElement) {
+                        this.appendChild(draggedElement);
+                        draggedElement = null;
+                    }
+                });
+            });
+        });
+
+        function checkDragDrop(unitId) {
+            const page = document.getElementById(unitId);
+            const zones = page.querySelectorAll('.drop-zone');
+            let correct = 0;
+            let total = 0;
+
+            zones.forEach(zone => {
+                const zoneType = zone.dataset.zone;
+                const items = zone.querySelectorAll('.drag-item');
+                
+                items.forEach(item => {
+                    total++;
+                    if (item.dataset.category === zoneType) {
+                        correct++;
+                        item.style.borderColor = 'var(--grass-green)';
+                        item.style.background = '#D1FAE5';
+                    } else {
+                        item.style.borderColor = '#EF4444';
+                        item.style.background = '#FEE2E2';
+                    }
+                });
+            });
+
+            const feedback = document.getElementById(`drag-feedback-${unitId}`);
+            feedback.classList.add('show');
+
+            if (correct === total && total > 0) {
+                feedback.style.background = 'var(--grass-green)';
+                feedback.style.color = 'white';
+                feedback.textContent = '🎉 Perfect! All sorted correctly!';
+                speak('Perfect! All sorted correctly!');
+            } else {
+                feedback.style.background = 'var(--sun-yellow)';
+                feedback.style.color = 'white';
+                feedback.textContent = `${correct}/${total} correct! Try again!`;
+                speak(`You got ${correct} out of ${total} correct!`);
+            }
+        }
+    </script>
+</body>
+</html>
